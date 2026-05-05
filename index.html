@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antifragile Insurance — Strategic Intelligence for the SA Insurance Industry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0C0F14;
+    --paper: #F7F3EC;
+    --gold: #B8922A;
+    --gold-light: #D4A843;
+    --gold-pale: #F5E6C4;
+    --rule: #2A2E38;
+    --muted: #8A8070;
+    --danger: #8B2020;
+    --accent-blue: #1A2E4A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── GRID BACKGROUND ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(184,146,42,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,146,42,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid rgba(184,146,42,0.4);
+    padding: 1.8rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .masthead-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .pub-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .pub-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .masthead-right {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: var(--gold); }
+  .nav-link.cta {
+    color: var(--gold);
+    border: 1px solid rgba(184,146,42,0.4);
+    padding: 0.35rem 0.9rem;
+  }
+  .nav-link.cta:hover {
+    background: rgba(184,146,42,0.1);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 3rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    margin-bottom: 2.5rem;
+    max-width: 14ch;
+  }
+  .hero-headline em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .hero-body {
+    font-size: 1.15rem;
+    color: #B0A898;
+    max-width: 55ch;
+    margin-bottom: 3.5rem;
+    line-height: 1.75;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--gold);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-secondary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--paper);
+    border: 1px solid rgba(247,243,236,0.25);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* floating deco number */
+  .hero-deco {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(10rem, 18vw, 20rem);
+    font-weight: 800;
+    color: rgba(184,146,42,0.04);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* ─── LATEST ISSUE ─── */
+  .latest-strip {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(184,146,42,0.2);
+    border-bottom: 1px solid rgba(184,146,42,0.2);
+    background: rgba(184,146,42,0.04);
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .latest-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .latest-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(184,146,42,0.3);
+    flex-shrink: 0;
+  }
+  .latest-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--paper);
+    flex: 1;
+    min-width: 200px;
+  }
+  .latest-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    display: block;
+  }
+  .latest-read {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(184,146,42,0.35);
+    padding: 0.5rem 1.2rem;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .latest-read:hover { background: rgba(184,146,42,0.1); }
+
+  /* ─── WHAT IS AFI ─── */
+  .what-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  @media(max-width:750px) {
+    .what-section { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+    .hero { padding: 4rem 2rem 3rem; }
+    .masthead { padding: 1.5rem 2rem; }
+    .latest-strip { padding: 2rem; gap: 1.5rem; }
+    .hero-deco { display: none; }
+  }
+  .what-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .what-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(184,146,42,0.25);
+  }
+  .what-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--paper);
+    margin-bottom: 1.8rem;
+  }
+  .what-body { color: #B0A898; line-height: 1.8; margin-bottom: 1.2rem; }
+
+  .pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .pillar {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .pillar:first-child { padding-top: 0; }
+  .pillar-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    flex-shrink: 0;
+    padding-top: 0.2rem;
+    width: 1.5rem;
+  }
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 0.4rem;
+  }
+  .pillar-body { font-size: 0.9rem; color: #8A8070; line-height: 1.65; }
+
+  /* ─── PIPELINE SECTION ─── */
+  .pipeline-section {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: rgba(0,0,0,0.3);
+    padding: 6rem 3rem;
+  }
+  .pipeline-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .pipeline-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 52ch;
+    margin: 0 auto;
+  }
+
+  .agents-flow {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(184,146,42,0.1);
+    border: 1px solid rgba(184,146,42,0.1);
+  }
+  .agent-tile {
+    background: var(--ink);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .agent-tile:hover { background: rgba(184,146,42,0.05); }
+  .agent-step {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .agent-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .agent-role {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .agent-deco {
+    position: absolute;
+    bottom: -0.5rem;
+    right: 0.8rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(184,146,42,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* ─── SECTIONS MAP ─── */
+  .structure-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 3rem;
+  }
+  .structure-header {
+    margin-bottom: 4rem;
+  }
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media(max-width:700px) {
+    .sections-grid { grid-template-columns: 1fr; }
+    .pipeline-section { padding: 4rem 2rem; }
+    .structure-section { padding: 4rem 2rem; }
+  }
+  @media(min-width:701px) and (max-width:900px) {
+    .sections-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .section-card {
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .section-card:hover { border-color: rgba(184,146,42,0.3); }
+  .sec-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .sec-body { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .sec-deco {
+    position: absolute;
+    bottom: -1rem;
+    right: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 4rem;
+    color: rgba(255,255,255,0.02);
+    font-weight: 400;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* ─── FRAMEWORKS ─── */
+  .frameworks-section {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: rgba(0,0,0,0.25);
+    padding: 6rem 3rem;
+  }
+  .frameworks-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .frameworks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  @media(max-width:650px) {
+    .frameworks-grid { grid-template-columns: 1fr; }
+    .frameworks-section { padding: 4rem 2rem; }
+  }
+  .fw-card {
+    border-left: 2px solid var(--gold);
+    padding: 1.5rem 2rem;
+    background: rgba(184,146,42,0.03);
+  }
+  .fw-thinker {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .fw-concept {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.9rem;
+    display: block;
+  }
+  .fw-body { font-size: 0.92rem; color: #B0A898; line-height: 1.7; }
+
+  /* ─── ISSUE ARCHIVE ─── */
+  .archive-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 3rem;
+  }
+  @media(max-width:600px) { .archive-section { padding: 4rem 2rem; } }
+
+  .issues-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .issue-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .issue-row:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .issue-row:hover { background: rgba(184,146,42,0.04); }
+  .issue-num-col {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .issue-title-col { }
+  .issue-row-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 0.3rem;
+  }
+  .issue-row-thesis {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .issue-cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  .issue-row:hover .issue-cta { opacity: 1; }
+
+  .coming-soon-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    opacity: 0.35;
+  }
+  .coming-soon-row .issue-row-title { color: var(--muted); font-style: italic; }
+
+  /* ─── REGULATORY FOOTER ─── */
+  .reg-bar {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(184,146,42,0.2);
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: rgba(0,0,0,0.4);
+  }
+  .reg-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .reg-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.25);
+  }
+  .reg-disclaimer {
+    font-size: 0.78rem;
+    color: var(--muted);
+    max-width: 500px;
+    text-align: right;
+  }
+  @media(max-width:600px) {
+    .reg-bar { padding: 1.5rem 2rem; }
+    .reg-disclaimer { text-align: left; }
+    .issue-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+    .issue-cta { display: none; }
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-left">
+    <div class="pub-name">Antifragile Insurance</div>
+    <div class="pub-desc">Strategic Intelligence · South African Insurance Industry</div>
+  </div>
+  <nav class="masthead-right">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#pipeline" class="nav-link">The System</a>
+    <a href="#archive" class="nav-link">Issues</a>
+    <a href="issue-001.html" class="nav-link cta">Read Issue 001 →</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Pilot Issue — May 2026</div>
+  <h1 class="hero-headline">Risk Intelligence <em>Without</em> the Comfort</h1>
+  <p class="hero-body">A weekly strategic publication for the South African insurance industry. We identify what is fragile before it breaks, where money is actually made before competitors notice, and what the industry believes that is not yet true.</p>
+  <div class="hero-actions">
+    <a href="issue-001.html" class="btn-primary">Read the Pilot Issue</a>
+    <a href="#about" class="btn-secondary">What is AFI?</a>
+  </div>
+  <div class="hero-deco" aria-hidden="true">001</div>
+</section>
+
+<!-- LATEST ISSUE STRIP -->
+<div class="latest-strip">
+  <span class="latest-label">Latest Issue</span>
+  <div class="latest-divider"></div>
+  <div class="latest-title">
+    The Cities That Insurance Cannot Hold
+    <span class="latest-meta">Issue 001 &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; Macro / Political Lens</span>
+  </div>
+  <a href="issue-001.html" class="latest-read">Read Now →</a>
+</div>
+
+<!-- WHAT IS AFI -->
+<section class="what-section" id="about">
+  <div class="reveal">
+    <div class="what-label">About the Publication</div>
+    <h2 class="what-heading">Built for readers who already know the basics</h2>
+    <p class="what-body">ANTIFRAGILE INSURANCE is not a news summary, a regulatory update service, or a balanced view. It is a weekly argument — a specific, defensible claim about the South African insurance industry, supported by evidence and designed to be uncomfortable for at least one powerful constituency.</p>
+    <p class="what-body">The publication is read by C-suite executives, senior underwriters, risk officers, FSCA and PA officials, institutional investors, and senior brokers. It assumes deep domain knowledge and delivers in return the one thing premium readers cannot get from any other source: non-obvious insight with the intellectual courage to say it directly.</p>
+    <p class="what-body" style="color: var(--muted); font-size:0.92rem;">Every issue is produced by a ten-agent AI pipeline designed around the frameworks of Nassim Taleb, Peter Thiel, and systems thinking. Every claim is audited before publication. Nothing is published without Auditor clearance.</p>
+  </div>
+  <div class="pillars reveal" style="transition-delay: 0.15s;">
+    <div class="pillar">
+      <span class="pillar-num">01</span>
+      <div>
+        <div class="pillar-title">Non-obvious or nothing</div>
+        <p class="pillar-body">Every insight is tested against the question: would a senior executive at a top-5 SA insurer already know this? If yes, it does not appear in print.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">02</span>
+      <div>
+        <div class="pillar-title">One thesis per issue</div>
+        <p class="pillar-body">Nine sections, one intellectual spine. Every analysis connects to the week's central claim — or it does not run.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">03</span>
+      <div>
+        <div class="pillar-title">Positions, not summaries</div>
+        <p class="pillar-body">AFI takes sides. The Contrarian Take answers Peter Thiel's question: what important truth does almost no one in the industry agree with you on?</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">04</span>
+      <div>
+        <div class="pillar-title">SA-first, always</div>
+        <p class="pillar-body">Global context is permitted only when it directly illuminates South African dynamics. The analytical frame is always this market, this regulation, this moment.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">05</span>
+      <div>
+        <div class="pillar-title">Audited before publication</div>
+        <p class="pillar-body">A dedicated Auditor Agent runs seven quality passes — factual accuracy, logical consistency, regulatory precision, specificity — before every issue clears for publication.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE SECTION -->
+<section class="pipeline-section" id="pipeline">
+  <div class="pipeline-inner">
+    <div class="pipeline-header reveal">
+      <span class="section-label">How AFI Is Produced</span>
+      <h2 class="section-heading">A Ten-Agent Production Pipeline</h2>
+      <p class="section-sub">Each issue is produced by a coordinated multi-agent system. Every agent has a distinct mandate, receives upstream context, and passes structured output downstream. Nothing is published without Auditor clearance.</p>
+    </div>
+
+    <div class="agents-flow reveal" style="transition-delay: 0.1s;">
+      <div class="agent-tile">
+        <span class="agent-step">Step 01</span>
+        <div class="agent-name">Memory Agent</div>
+        <p class="agent-role">Maintains five persistent registers of prior issue history, claim performance, fragility score trends, and contrarian positions taken.</p>
+        <span class="agent-deco">M</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 02</span>
+        <div class="agent-name">Planning Agent</div>
+        <p class="agent-role">Selects the weekly thesis, designs the section emphasis map, and produces individual briefing packages for every downstream agent.</p>
+        <span class="agent-deco">P</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 03</span>
+        <div class="agent-name">Orchestrator</div>
+        <p class="agent-role">Distributes the thesis, manages context passing between agents, and enforces quality gates before final assembly.</p>
+        <span class="agent-deco">O</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 04</span>
+        <div class="agent-name">RAG Agent</div>
+        <p class="agent-role">Evidence engine. Manages seven knowledge domains and responds to structured evidence queries from any agent at any pipeline stage.</p>
+        <span class="agent-deco">R</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 05</span>
+        <div class="agent-name">Research Intelligence</div>
+        <p class="agent-role">Scans six signal domains — regulatory, macro, climate, political, market, and behavioural — to produce the Weekly Intelligence Brief.</p>
+        <span class="agent-deco">RI</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 06</span>
+        <div class="agent-name">Risk Analyst</div>
+        <p class="agent-role">Produces Section 2 (Black Swan Watch) and Section 3 (Fragility Index) using Taleb's tail-risk and antifragility frameworks.</p>
+        <span class="agent-deco">RA</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 07</span>
+        <div class="agent-name">Category Analyst</div>
+        <p class="agent-role">Produces eight category intelligence sections (5A–5H) covering every major SA insurance segment, each with one contrarian insight, one risk, one opportunity.</p>
+        <span class="agent-deco">CA</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 08</span>
+        <div class="agent-name">Strategic Analyst</div>
+        <p class="agent-role">Produces Hidden Profit Pools (4), Second-Order Effects (6), and Strategic Recommendations (7). The argument's strategic conclusion.</p>
+        <span class="agent-deco">SA</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 09</span>
+        <div class="agent-name">Writer-Editor</div>
+        <p class="agent-role">Writes the title, Executive Brief, Contrarian Take, and Closing Line. Performs a full editorial pass enforcing voice, eliminating repetition, and assembling the final document.</p>
+        <span class="agent-deco">WE</span>
+      </div>
+      <div class="agent-tile">
+        <span class="agent-step">Step 10</span>
+        <div class="agent-name">Auditor Agent</div>
+        <p class="agent-role">Seven-pass quality audit: factual accuracy, logical consistency, specificity, longitudinal consistency, regulatory accuracy, intellectual honesty, and publication readiness.</p>
+        <span class="agent-deco">AU</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATION STRUCTURE -->
+<section class="structure-section">
+  <div class="structure-header reveal">
+    <span class="section-label">Every Issue Contains</span>
+    <h2 class="section-heading">Nine Sections, One Argument</h2>
+  </div>
+  <div class="sections-grid">
+    <div class="section-card reveal">
+      <span class="sec-num">Section 01</span>
+      <div class="sec-title">Executive Brief</div>
+      <p class="sec-body">150–200 words. Thesis, why it matters this week, who wins and who loses. Everything a reader needs if they read nothing else.</p>
+      <span class="sec-deco">01</span>
+    </div>
+    <div class="section-card reveal" style="transition-delay:0.05s">
+      <span class="sec-num">Section 02</span>
+      <div class="sec-title">Black Swan Watch</div>
+      <p class="sec-body">3–5 tail risks the industry is systematically underestimating. Each with an underestimation argument, a nonlinear impact scenario, and an antifragility opportunity.</p>
+      <span class="sec-deco">02</span>
+    </div>
+    <div class="section-card reveal" style="transition-delay:0.1s">
+      <span class="sec-num">Section 03</span>
+      <div class="sec-title">Fragility Index</div>
+      <p class="sec-body">Eight sub-sectors scored 0–10 for fragility every issue. Time-series tracking reveals where the system is accumulating brittleness before it breaks.</p>
+      <span class="sec-deco">03</span>
+    </div>
+    <div class="section-card reveal" style="transition-delay:0.15s">
+      <span class="sec-num">Section 04</span>
+      <div class="sec-title">Hidden Profit Pools</div>
+      <p class="sec-body">2–3 profit pool insights that are counterintuitive or structurally obscured from standard P&L analysis. The conventional view, the actual economics, why it stays hidden.</p>
+      <span class="sec-deco">04</span>
+    </div>
+    <div class="section-card reveal" style="transition-delay:0.2s">
+      <span class="sec-num">Section 05 A–H</span>
+      <div class="sec-title">Category Intelligence</div>
+      <p class="sec-body">Eight segment analyses across Life, Health, Short-Term, Commercial, Specialised, Reinsurance, Microinsurance, and Insurtech. One contrarian insight, one risk, one opportunity each.</p>
+      <span class="sec-deco">05</span>
+    </div>
+    <div class="section-card reveal" style="transition-delay:0.25s">
+      <span class="sec-num">Section 06</span>
+      <div class="sec-title">Second-Order Effects</div>
+      <p class="sec-body">One trend mapped through its full causal chain — from the obvious first-order effect the industry is discussing to the non-obvious third-order structural implication it is not.</p>
+      <span class="sec-deco">06</span>
+    </div>
+    <div class="section-card reveal" style="transition-delay:0.3s">
+      <span class="sec-num">Section 07</span>
+      <div class="sec-title">Strategic Recommendations</div>
+      <p class="sec-body">Nine moves — three for insurers, three for brokers, three for regulators. Specific, actionable, and derived from this week's analysis. Each with a "Why Now" justification.</p>
+      <span class="sec-deco">07</span>
+    </div>
+    <div class="section-card reveal" style="transition-delay:0.35s">
+      <span class="sec-num">Section 08</span>
+      <div class="sec-title">The Contrarian Take</div>
+      <p class="sec-body">One committed, uncomfortable position. What important truth about SA insurance does almost no one agree with? Structured on Peter Thiel's contrarian truth framework.</p>
+      <span class="sec-deco">08</span>
+    </div>
+    <div class="section-card reveal" style="transition-delay:0.4s">
+      <span class="sec-num">Section 09</span>
+      <div class="sec-title">Closing Line</div>
+      <p class="sec-body">One sentence. Economist-style. The week's essential insight crystallised in a form that is memorable and structurally complete. Maximum thirty words. No exceptions.</p>
+      <span class="sec-deco">09</span>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORKS -->
+<section class="frameworks-section">
+  <div class="frameworks-inner">
+    <div class="pipeline-header reveal">
+      <span class="section-label">Intellectual DNA</span>
+      <h2 class="section-heading">Four Frameworks, Applied Relentlessly</h2>
+      <p class="section-sub">Every agent in the AFI pipeline applies these four frameworks. They are not referenced decoratively — they determine what gets written and what gets cut.</p>
+    </div>
+    <div class="frameworks-grid">
+      <div class="fw-card reveal">
+        <div class="fw-thinker">Taleb</div>
+        <span class="fw-concept">Antifragility & Tail Risk</span>
+        <p class="fw-body">Classify systems as fragile, robust, or antifragile. Prioritise the shape of distributions over their means. Identify who has skin in the game and who is transferring fragility to others. The Fragility Index and Black Swan Watch exist because of this framework.</p>
+      </div>
+      <div class="fw-card reveal" style="transition-delay:0.1s">
+        <div class="fw-thinker">Thiel</div>
+        <span class="fw-concept">Monopoly, Secrets & Zero-to-One</span>
+        <p class="fw-body">Identify structural advantages that compound. Find the "secret" — the thing that is true but that most of the industry has not accepted. Distinguish genuine innovation from competitive iteration. The Contrarian Take is a Thiel question answered weekly.</p>
+      </div>
+      <div class="fw-card reveal" style="transition-delay:0.05s">
+        <div class="fw-thinker">Systems</div>
+        <span class="fw-concept">Feedback Loops & Nonlinearity</span>
+        <p class="fw-body">Map reinforcing and balancing loops. Identify leverage points. Expect nonlinear outcomes from linear-seeming inputs. Second-order effects are not optional analysis — they are the core of AFI's predictive value. The Second-Order Effects section exists because of this framework.</p>
+      </div>
+      <div class="fw-card reveal" style="transition-delay:0.15s">
+        <div class="fw-thinker">Kahneman</div>
+        <span class="fw-concept">Behavioral Economics</span>
+        <p class="fw-body">Policyholders, brokers, and underwriters do not behave as rational agents. Identify the specific biases — loss aversion, present bias, herding, availability bias — producing the mispricings, fragilities, and hidden profit pools that AFI exists to surface.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ISSUE ARCHIVE -->
+<section class="archive-section" id="archive">
+  <div class="reveal">
+    <span class="section-label">Issue Archive</span>
+    <h2 class="section-heading">Published Issues</h2>
+  </div>
+  <div class="issues-list reveal" style="transition-delay:0.1s">
+
+    <a href="issue-001.html" class="issue-row">
+      <div class="issue-num-col">
+        Issue 001<br>
+        <span style="color:var(--muted);font-size:0.55rem;">May 2026</span>
+      </div>
+      <div class="issue-title-col">
+        <div class="issue-row-title">The Cities That Insurance Cannot Hold</div>
+        <div class="issue-row-thesis">Municipal infrastructure collapse has crossed an actuarial threshold — and the reinsurance market is moving before the primary market does.</div>
+      </div>
+      <span class="issue-cta">Read →</span>
+    </a>
+
+    <div class="coming-soon-row">
+      <div class="issue-num-col" style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--muted);">
+        Issue 002
+      </div>
+      <div class="issue-title-col">
+        <div class="issue-row-title">Forthcoming</div>
+        <div class="issue-row-thesis" style="color:var(--muted);">Next issue in production.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="reg-bar">
+  <div class="reg-badges">
+    <span class="reg-badge">FSCA Framework</span>
+    <span class="reg-badge">SAM Capital</span>
+    <span class="reg-badge">NHI Act</span>
+    <span class="reg-badge">Insurance Act 18/2017</span>
+    <span class="reg-badge">Twin Peaks</span>
+    <span class="reg-badge">COFI Bill</span>
+  </div>
+  <p class="reg-disclaimer">ANTIFRAGILE INSURANCE does not constitute financial, legal, or regulatory advice. All analysis represents original editorial judgement.</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
