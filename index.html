@@ -3,22 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Weekly strategic intelligence for the South African insurance industry. Built on a ten-agent AI pipeline. One thesis per issue. Nine sections. Nothing published without Auditor clearance.">
 <title>Antifragile Insurance — Strategic Intelligence for the SA Insurance Industry</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════════ */
 :root {
-  --ink: #0C0F14;
-  --paper: #F7F3EC;
-  --gold: #B8922A;
-  --gold-light: #D4A843;
-  --gold-pale: #F5E6C4;
-  --rule: #2A2E38;
-  --muted: #8A8070;
-  --danger: #8B2020;
-  --accent-blue: #1A2E4A;
+  --ink:         #0C0F14;
+  --paper:       #F7F3EC;
+  --gold:        #B8922A;
+  --gold-light:  #D4A843;
+  --muted:       #8A8070;
+  --muted-light: #B0A898;
+  --rule-dark:   rgba(184,146,42,0.2);
+  --rule-light:  rgba(255,255,255,0.07);
+  --gold-glow:   rgba(184,146,42,0.1);
 }
 
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -32,7 +39,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── GRID BACKGROUND ─── */
+/* Subtle grid overlay */
 body::before {
   content: '';
   position: fixed;
@@ -45,7 +52,44 @@ body::before {
   z-index: 0;
 }
 
-/* ─── MASTHEAD ─── */
+/* ═══════════════════════════════════════════════════════════
+   TYPOGRAPHY UTILITIES
+═══════════════════════════════════════════════════════════ */
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MASTHEAD
+═══════════════════════════════════════════════════════════ */
 .masthead {
   position: relative;
   z-index: 10;
@@ -56,12 +100,6 @@ body::before {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-}
-
-.masthead-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
 }
 
 .pub-name {
@@ -79,9 +117,10 @@ body::before {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
+  margin-top: 0.2rem;
 }
 
-.masthead-right {
+.masthead-nav {
   display: flex;
   gap: 2rem;
   align-items: center;
@@ -96,16 +135,21 @@ body::before {
   text-decoration: none;
   transition: color 0.2s;
 }
-.nav-link:hover { color: var(--gold); }
+
+.nav-link:hover  { color: var(--gold); }
 
 .nav-link.cta {
   color: var(--gold);
   border: 1px solid rgba(184,146,42,0.4);
   padding: 0.35rem 0.9rem;
+  transition: background 0.2s;
 }
-.nav-link.cta:hover { background: rgba(184,146,42,0.1); }
 
-/* ─── HERO ─── */
+.nav-link.cta:hover { background: var(--gold-glow); }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════ */
 .hero {
   position: relative;
   z-index: 1;
@@ -129,6 +173,7 @@ body::before {
   align-items: center;
   gap: 1rem;
 }
+
 .hero-eyebrow::before {
   content: '';
   display: inline-block;
@@ -147,22 +192,21 @@ body::before {
   margin-bottom: 2.5rem;
   max-width: 14ch;
 }
-.hero-headline em { color: var(--gold); font-style: italic; }
+
+.hero-headline em {
+  color: var(--gold);
+  font-style: italic;
+}
 
 .hero-body {
   font-size: 1.15rem;
-  color: #B0A898;
+  color: var(--muted-light);
   max-width: 55ch;
   margin-bottom: 3.5rem;
   line-height: 1.75;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
+.hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: center; }
 
 .btn-primary {
   font-family: 'JetBrains Mono', monospace;
@@ -176,6 +220,7 @@ body::before {
   display: inline-block;
   transition: background 0.2s, transform 0.15s;
 }
+
 .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
 
 .btn-secondary {
@@ -190,6 +235,7 @@ body::before {
   display: inline-block;
   transition: border-color 0.2s, color 0.2s;
 }
+
 .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
 .hero-deco {
@@ -206,13 +252,15 @@ body::before {
   pointer-events: none;
 }
 
-/* ─── LATEST ISSUE STRIP ─── */
+/* ═══════════════════════════════════════════════════════════
+   LATEST STRIP
+═══════════════════════════════════════════════════════════ */
 .latest-strip {
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(184,146,42,0.2);
-  border-bottom: 1px solid rgba(184,146,42,0.2);
-  background: rgba(184,146,42,0.04);
+  border-top: 1px solid var(--rule-dark);
+  border-bottom: 1px solid var(--rule-dark);
+  background: var(--gold-glow);
   padding: 2.5rem 3rem;
   display: flex;
   align-items: center;
@@ -266,10 +314,13 @@ body::before {
   flex-shrink: 0;
   transition: background 0.2s;
 }
-.latest-read:hover { background: rgba(184,146,42,0.1); }
 
-/* ─── WHAT IS AFI ─── */
-.what-section {
+.latest-read:hover { background: var(--gold-glow); }
+
+/* ═══════════════════════════════════════════════════════════
+   ABOUT SECTION
+═══════════════════════════════════════════════════════════ */
+.about-section {
   position: relative;
   z-index: 1;
   max-width: 1100px;
@@ -279,14 +330,6 @@ body::before {
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
   align-items: start;
-}
-
-@media(max-width:750px) {
-  .what-section { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
-  .hero { padding: 4rem 2rem 3rem; }
-  .masthead { padding: 1.5rem 2rem; }
-  .latest-strip { padding: 2rem; gap: 1.5rem; }
-  .hero-deco { display: none; }
 }
 
 .what-label {
@@ -300,6 +343,7 @@ body::before {
   gap: 0.8rem;
   margin-bottom: 1.5rem;
 }
+
 .what-label::after {
   content: '';
   flex: 1;
@@ -316,17 +360,26 @@ body::before {
   margin-bottom: 1.8rem;
 }
 
-.what-body { color: #B0A898; line-height: 1.8; margin-bottom: 1.2rem; }
+/* Markdown-rendered about prose */
+.about-prose p {
+  color: var(--muted-light);
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+}
 
-.pillars { display: flex; flex-direction: column; gap: 0; }
+.about-prose p:last-child { margin-bottom: 0; }
+
+/* Pillars list */
+.pillars { display: flex; flex-direction: column; }
 
 .pillar {
   padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid var(--rule-light);
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
 }
+
 .pillar:first-child { padding-top: 0; }
 
 .pillar-num {
@@ -347,13 +400,15 @@ body::before {
   margin-bottom: 0.4rem;
 }
 
-.pillar-body { font-size: 0.9rem; color: #8A8070; line-height: 1.65; }
+.pillar-body { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
 
-/* ─── PIPELINE SECTION ─── */
+/* ═══════════════════════════════════════════════════════════
+   PIPELINE SECTION
+═══════════════════════════════════════════════════════════ */
 .pipeline-section {
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--rule-light);
   background: rgba(0,0,0,0.3);
   padding: 6rem 3rem;
 }
@@ -361,31 +416,6 @@ body::before {
 .pipeline-inner { max-width: 1100px; margin: 0 auto; }
 
 .pipeline-header { text-align: center; margin-bottom: 4rem; }
-
-.section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.section-heading {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 600;
-  color: var(--paper);
-  margin-bottom: 1rem;
-}
-
-.section-sub {
-  font-size: 1rem;
-  color: var(--muted);
-  max-width: 52ch;
-  margin: 0 auto;
-}
 
 .agents-flow {
   display: grid;
@@ -402,7 +432,8 @@ body::before {
   overflow: hidden;
   transition: background 0.2s;
 }
-.agent-tile:hover { background: rgba(184,146,42,0.05); }
+
+.agent-tile:hover { background: var(--gold-glow); }
 
 .agent-step {
   font-family: 'JetBrains Mono', monospace;
@@ -438,7 +469,9 @@ body::before {
   pointer-events: none;
 }
 
-/* ─── SECTIONS MAP ─── */
+/* ═══════════════════════════════════════════════════════════
+   SECTIONS STRUCTURE
+═══════════════════════════════════════════════════════════ */
 .structure-section {
   position: relative;
   z-index: 1;
@@ -455,23 +488,14 @@ body::before {
   gap: 1.5rem;
 }
 
-@media(max-width:700px) {
-  .sections-grid { grid-template-columns: 1fr; }
-  .pipeline-section { padding: 4rem 2rem; }
-  .structure-section { padding: 4rem 2rem; }
-}
-
-@media(min-width:701px) and (max-width:900px) {
-  .sections-grid { grid-template-columns: 1fr 1fr; }
-}
-
 .section-card {
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid var(--rule-light);
   padding: 1.5rem;
   position: relative;
   overflow: hidden;
   transition: border-color 0.2s;
 }
+
 .section-card:hover { border-color: rgba(184,146,42,0.3); }
 
 .sec-num {
@@ -506,11 +530,13 @@ body::before {
   pointer-events: none;
 }
 
-/* ─── FRAMEWORKS ─── */
+/* ═══════════════════════════════════════════════════════════
+   FRAMEWORKS
+═══════════════════════════════════════════════════════════ */
 .frameworks-section {
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--rule-light);
   background: rgba(0,0,0,0.25);
   padding: 6rem 3rem;
 }
@@ -522,11 +548,6 @@ body::before {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-top: 3rem;
-}
-
-@media(max-width:650px) {
-  .frameworks-grid { grid-template-columns: 1fr; }
-  .frameworks-section { padding: 4rem 2rem; }
 }
 
 .fw-card {
@@ -554,9 +575,11 @@ body::before {
   display: block;
 }
 
-.fw-body { font-size: 0.92rem; color: #B0A898; line-height: 1.7; }
+.fw-body { font-size: 0.92rem; color: var(--muted-light); line-height: 1.7; }
 
-/* ─── ISSUE ARCHIVE ─── */
+/* ═══════════════════════════════════════════════════════════
+   ARCHIVE
+═══════════════════════════════════════════════════════════ */
 .archive-section {
   position: relative;
   z-index: 1;
@@ -565,13 +588,10 @@ body::before {
   padding: 7rem 3rem;
 }
 
-@media(max-width:600px) { .archive-section { padding: 4rem 2rem; } }
-
 .issues-list {
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .issue-row {
@@ -580,17 +600,28 @@ body::before {
   gap: 2rem;
   align-items: center;
   padding: 1.8rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--rule-light);
   text-decoration: none;
   transition: background 0.15s;
 }
-.issue-row:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
-.issue-row:hover { background: rgba(184,146,42,0.04); }
 
-/* Latest issue row gets a subtle gold highlight */
-.issue-row.latest-issue {
-  border-left: 2px solid var(--gold);
-  padding-left: 1rem;
+.issue-row:first-child { border-top: 1px solid var(--rule-light); }
+.issue-row:hover { background: var(--gold-glow); padding-left: 0.75rem; }
+
+/* "New" badge on latest issue */
+.issue-row.is-latest .issue-row-title::after {
+  content: 'New';
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 0.15rem 0.45rem;
+  margin-left: 0.75rem;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
 
 .issue-num-col {
@@ -598,6 +629,13 @@ body::before {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   color: var(--gold);
+}
+
+.issue-date {
+  color: var(--muted);
+  font-size: 0.55rem;
+  display: block;
+  margin-top: 0.2rem;
 }
 
 .issue-row-title {
@@ -612,23 +650,7 @@ body::before {
   font-size: 0.85rem;
   color: var(--muted);
   font-style: italic;
-}
-
-.issue-row-tags {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.issue-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.52rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.15rem 0.5rem;
-  border: 1px solid rgba(184,146,42,0.25);
-  color: rgba(184,146,42,0.6);
+  line-height: 1.5;
 }
 
 .issue-cta {
@@ -641,74 +663,33 @@ body::before {
   transition: opacity 0.2s;
   white-space: nowrap;
 }
+
 .issue-row:hover .issue-cta { opacity: 1; }
 
-/* ─── FRAGILITY TICKER ─── */
-.fragility-ticker {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid rgba(184,146,42,0.1);
-  border-bottom: 1px solid rgba(184,146,42,0.1);
-  background: rgba(0,0,0,0.4);
-  padding: 1.5rem 3rem;
-  display: flex;
-  align-items: center;
+.coming-soon-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
   gap: 2rem;
-  overflow: hidden;
-}
-
-.ticker-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  flex-shrink: 0;
-  border-right: 1px solid rgba(184,146,42,0.3);
-  padding-right: 2rem;
-}
-
-.ticker-items {
-  display: flex;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.ticker-item {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0.3;
 }
 
-.ticker-score {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  line-height: 1;
-}
-.ticker-score.high { color: #8B2020; }
-.ticker-score.mid { color: #8B6914; }
-.ticker-score.low { color: #1a4a2e; }
-
-.ticker-name {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.5rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.coming-soon-row .issue-row-title {
   color: var(--muted);
-  text-align: center;
-  max-width: 80px;
-  line-height: 1.35;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
 }
 
-.ticker-trend { font-size: 0.65rem; }
-
-/* ─── REGULATORY FOOTER ─── */
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
 .reg-bar {
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(184,146,42,0.2);
+  border-top: 1px solid var(--rule-dark);
   padding: 1.5rem 3rem;
   display: flex;
   align-items: center;
@@ -718,11 +699,7 @@ body::before {
   background: rgba(0,0,0,0.4);
 }
 
-.reg-badges {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
+.reg-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
 .reg-badge {
   font-family: 'JetBrains Mono', monospace;
@@ -741,36 +718,51 @@ body::before {
   text-align: right;
 }
 
-@media(max-width:600px) {
-  .reg-bar { padding: 1.5rem 2rem; }
-  .reg-disclaimer { text-align: left; }
-  .issue-row { grid-template-columns: 60px 1fr; gap: 1rem; }
-  .issue-cta { display: none; }
-  .fragility-ticker { padding: 1.5rem 2rem; flex-direction: column; align-items: flex-start; }
-  .ticker-items { gap: 1.5rem; }
-}
-
-/* ─── SCROLL REVEAL ─── */
+/* ═══════════════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════════════ */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: none;
+
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .sections-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 750px) {
+  .about-section  { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+  .hero           { padding: 4rem 2rem 3rem; }
+  .masthead       { padding: 1.5rem 2rem; }
+  .latest-strip   { padding: 2rem; gap: 1.5rem; }
+  .hero-deco      { display: none; }
+  .sections-grid  { grid-template-columns: 1fr; }
+  .frameworks-grid{ grid-template-columns: 1fr; }
+  .structure-section,
+  .archive-section { padding: 4rem 2rem; }
+  .pipeline-section,
+  .frameworks-section { padding: 4rem 2rem; }
+  .reg-bar        { padding: 1.5rem 2rem; }
+  .reg-disclaimer { text-align: left; }
+  .issue-row      { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .issue-cta      { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════ MASTHEAD ═══════════ -->
 <header class="masthead">
-  <div class="masthead-left">
+  <div>
     <div class="pub-name">Antifragile Insurance</div>
     <div class="pub-desc">Strategic Intelligence · South African Insurance Industry</div>
   </div>
-  <nav class="masthead-right">
+  <nav class="masthead-nav">
     <a href="#about" class="nav-link">About</a>
     <a href="#pipeline" class="nav-link">The System</a>
     <a href="#archive" class="nav-link">Issues</a>
@@ -778,89 +770,49 @@ body::before {
   </nav>
 </header>
 
-<!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
-  <div class="hero-eyebrow">Issue 002 — 12 May 2026</div>
-  <h1 class="hero-headline">Risk Intelligence <em>Without</em> the Comfort</h1>
+  <div class="hero-eyebrow">Issue 002 — 19 May 2026</div>
+  <h1 class="hero-headline">
+    Risk Intelligence <em>Without the Comfort</em>
+  </h1>
   <p class="hero-body">A weekly strategic publication for the South African insurance industry. We identify what is fragile before it breaks, where money is actually made before competitors notice, and what the industry believes that is not yet true.</p>
   <div class="hero-actions">
-    <a href="issue-002.html" class="btn-primary">Read Issue 002</a>
-    <a href="issue-001.html" class="btn-secondary">Issue 001 Archive →</a>
+    <a href="issue-002.html"   class="btn-primary">Read the Latest Issue</a>
+    <a href="#archive" class="btn-secondary">Browse Archive</a>
   </div>
   <div class="hero-deco" aria-hidden="true">002</div>
 </section>
 
-<!-- ═══════════ LATEST ISSUE STRIP ═══════════ -->
 <div class="latest-strip">
   <span class="latest-label">Latest Issue</span>
   <div class="latest-divider"></div>
   <div class="latest-title">
-    The Insurability Cliff: How Municipal Failure Is Redrawing South Africa's Property Risk Map
-    <span class="latest-meta">Issue 002 &nbsp;·&nbsp; 12 May 2026 &nbsp;·&nbsp; Macro / Infrastructure Lens &nbsp;·&nbsp; Aggregate Fragility: 6.9/10</span>
+    When the Constitutional Scaffolding Shakes
+    <span class="latest-meta">
+      Issue 002
+      &nbsp;·&nbsp; 19 May 2026
+      &nbsp;·&nbsp; Political / Regulatory Lens
+      &nbsp;·&nbsp; System Fragility 6.9/10
+    </span>
   </div>
   <a href="issue-002.html" class="latest-read">Read Now →</a>
 </div>
 
-<!-- ═══════════ FRAGILITY TICKER ═══════════ -->
-<div class="fragility-ticker">
-  <span class="ticker-label">Fragility Index<br>Issue 002</span>
-  <div class="ticker-items">
-    <div class="ticker-item">
-      <span class="ticker-score mid">5</span>
-      <span class="ticker-name">Life</span>
-      <span class="ticker-trend" style="color:var(--muted)">→</span>
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-score high">9</span>
-      <span class="ticker-name">Health / Med Schemes</span>
-      <span class="ticker-trend" style="color:#8B2020">↑</span>
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-score high">8</span>
-      <span class="ticker-name">STI Personal</span>
-      <span class="ticker-trend" style="color:#8B2020">↑</span>
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-score high">9</span>
-      <span class="ticker-name">Commercial</span>
-      <span class="ticker-trend" style="color:#8B2020">↑↑</span>
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-score mid">6</span>
-      <span class="ticker-name">Specialised</span>
-      <span class="ticker-trend" style="color:var(--muted)">→</span>
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-score mid">7</span>
-      <span class="ticker-name">Reinsurance</span>
-      <span class="ticker-trend" style="color:#8B6914">↑</span>
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-score low">5</span>
-      <span class="ticker-name">Microinsurance</span>
-      <span class="ticker-trend" style="color:var(--muted)">→</span>
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-score mid">6</span>
-      <span class="ticker-name">Insurtech</span>
-      <span class="ticker-trend" style="color:var(--muted)">→</span>
-    </div>
-    <div class="ticker-item" style="border-left:1px solid rgba(184,146,42,0.2);padding-left:2rem;">
-      <span class="ticker-score mid" style="color:var(--gold-light)">6.9</span>
-      <span class="ticker-name">Aggregate System</span>
-      <span class="ticker-trend" style="color:#8B2020">↑</span>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ WHAT IS AFI ═══════════ -->
-<section class="what-section" id="about">
+<section class="about-section" id="about">
   <div class="reveal">
     <div class="what-label">About the Publication</div>
     <h2 class="what-heading">Built for readers who already know the basics</h2>
-    <p class="what-body">ANTIFRAGILE INSURANCE is not a news summary, a regulatory update service, or a balanced view. It is a weekly argument — a specific, defensible claim about the South African insurance industry, supported by evidence and designed to be uncomfortable for at least one powerful constituency.</p>
-    <p class="what-body">The publication is read by C-suite executives, senior underwriters, risk officers, FSCA and PA officials, institutional investors, and senior brokers. It assumes deep domain knowledge and delivers in return the one thing premium readers cannot get from any other source: non-obvious insight with the intellectual courage to say it directly.</p>
-    <p class="what-body" style="color: var(--muted); font-size:0.92rem;">Every issue is produced by a ten-agent AI pipeline designed around the frameworks of Nassim Taleb, Peter Thiel, and systems thinking. Every claim is audited before publication. Nothing is published without Auditor clearance.</p>
+    <div class="about-prose">&lt;p&gt;ANTIFRAGILE INSURANCE is not a news summary, a regulatory update service, or a balanced&lt;br /&gt;
+view. It is a weekly argument — a specific, defensible claim about the South African&lt;br /&gt;
+insurance industry, supported by evidence and designed to be uncomfortable for at least&lt;br /&gt;
+one powerful constituency.&lt;/p&gt;
+&lt;p&gt;The publication is read by C-suite executives, senior underwriters, risk officers, FSCA&lt;br /&gt;
+and PA officials, institutional investors, and senior brokers. It assumes deep domain&lt;br /&gt;
+knowledge and delivers in return the one thing premium readers cannot get from any other&lt;br /&gt;
+source: non-obvious insight with the intellectual courage to say it directly.&lt;/p&gt;
+&lt;p&gt;Every issue is produced by a ten-agent AI pipeline designed around the frameworks of&lt;br /&gt;
+Nassim Taleb, Peter Thiel, and systems thinking. Every claim is audited before&lt;br /&gt;
+publication. Nothing is published without Auditor clearance.&lt;/p&gt;</div>
   </div>
 
   <div class="pillars reveal" style="transition-delay: 0.15s;">
@@ -875,14 +827,14 @@ body::before {
       <span class="pillar-num">02</span>
       <div>
         <div class="pillar-title">One thesis per issue</div>
-        <p class="pillar-body">Nine sections, one intellectual spine. Every analysis connects to the week's central claim — or it does not run.</p>
+        <p class="pillar-body">Nine sections, one intellectual spine. Every analysis connects to the week&#39;s central claim — or it does not run.</p>
       </div>
     </div>
     <div class="pillar">
       <span class="pillar-num">03</span>
       <div>
         <div class="pillar-title">Positions, not summaries</div>
-        <p class="pillar-body">AFI takes sides. The Contrarian Take answers Peter Thiel's question: what important truth does almost no one in the industry agree with you on?</p>
+        <p class="pillar-body">AFI takes sides. The Contrarian Take answers Peter Thiel&#39;s question: what important truth does almost no one in the industry agree with you on?</p>
       </div>
     </div>
     <div class="pillar">
@@ -902,13 +854,14 @@ body::before {
   </div>
 </section>
 
-<!-- ═══════════ PIPELINE SECTION ═══════════ -->
 <section class="pipeline-section" id="pipeline">
   <div class="pipeline-inner">
     <div class="pipeline-header reveal">
-      <span class="section-label">How AFI Is Produced</span>
+      <span class="eyebrow">How AFI Is Produced</span>
       <h2 class="section-heading">A Ten-Agent Production Pipeline</h2>
-      <p class="section-sub">Each issue is produced by a coordinated multi-agent system. Every agent has a distinct mandate, receives upstream context, and passes structured output downstream. Nothing is published without Auditor clearance.</p>
+      <p class="section-sub">Each issue is produced by a coordinated multi-agent system.
+        Every agent has a distinct mandate, receives upstream context, and passes
+        structured output downstream. Nothing is published without Auditor clearance.</p>
     </div>
 
     <div class="agents-flow reveal" style="transition-delay: 0.1s;">
@@ -945,25 +898,25 @@ body::before {
       <div class="agent-tile">
         <span class="agent-step">Step 06</span>
         <div class="agent-name">Risk Analyst</div>
-        <p class="agent-role">Produces Section 2 (Black Swan Watch) and Section 3 (Fragility Index) using Taleb's tail-risk and antifragility frameworks.</p>
+        <p class="agent-role">Produces Section 2 (Black Swan Watch) and Section 3 (Fragility Index) using Taleb&#39;s tail-risk and antifragility frameworks.</p>
         <span class="agent-deco">RA</span>
       </div>
       <div class="agent-tile">
         <span class="agent-step">Step 07</span>
         <div class="agent-name">Category Analyst</div>
-        <p class="agent-role">Produces eight category intelligence sections (5A–5H) covering every major SA insurance segment, each with one contrarian insight, one risk, one opportunity.</p>
+        <p class="agent-role">Produces eight category intelligence sections (5A–5H) covering every major SA insurance segment. One contrarian insight, one risk, one opportunity per category.</p>
         <span class="agent-deco">CA</span>
       </div>
       <div class="agent-tile">
         <span class="agent-step">Step 08</span>
         <div class="agent-name">Strategic Analyst</div>
-        <p class="agent-role">Produces Hidden Profit Pools (4), Second-Order Effects (6), and Strategic Recommendations (7). The argument's strategic conclusion.</p>
+        <p class="agent-role">Produces Hidden Profit Pools (4), Second-Order Effects (6), and Strategic Recommendations (7). The argument&#39;s strategic conclusion.</p>
         <span class="agent-deco">SA</span>
       </div>
       <div class="agent-tile">
         <span class="agent-step">Step 09</span>
         <div class="agent-name">Writer-Editor</div>
-        <p class="agent-role">Writes the title, Executive Brief, Contrarian Take, and Closing Line. Performs a full editorial pass enforcing voice, eliminating repetition, and assembling the final document.</p>
+        <p class="agent-role">Writes the title, Executive Brief, Contrarian Take, and Closing Line. Full editorial pass enforcing voice, eliminating repetition, assembling the final document.</p>
         <span class="agent-deco">WE</span>
       </div>
       <div class="agent-tile">
@@ -976,155 +929,157 @@ body::before {
   </div>
 </section>
 
-<!-- ═══════════ PUBLICATION STRUCTURE ═══════════ -->
 <section class="structure-section">
   <div class="structure-header reveal">
-    <span class="section-label">Every Issue Contains</span>
+    <span class="eyebrow">Every Issue Contains</span>
     <h2 class="section-heading">Nine Sections, One Argument</h2>
   </div>
 
   <div class="sections-grid">
-    <div class="section-card reveal">
+    <div class="section-card reveal" style="transition-delay: 0.0s;">
       <span class="sec-num">Section 01</span>
       <div class="sec-title">Executive Brief</div>
       <p class="sec-body">150–200 words. Thesis, why it matters this week, who wins and who loses. Everything a reader needs if they read nothing else.</p>
       <span class="sec-deco">01</span>
     </div>
-    <div class="section-card reveal" style="transition-delay:0.05s">
+    <div class="section-card reveal" style="transition-delay: 0.05s;">
       <span class="sec-num">Section 02</span>
       <div class="sec-title">Black Swan Watch</div>
       <p class="sec-body">3–5 tail risks the industry is systematically underestimating. Each with an underestimation argument, a nonlinear impact scenario, and an antifragility opportunity.</p>
       <span class="sec-deco">02</span>
     </div>
-    <div class="section-card reveal" style="transition-delay:0.1s">
+    <div class="section-card reveal" style="transition-delay: 0.1s;">
       <span class="sec-num">Section 03</span>
       <div class="sec-title">Fragility Index</div>
       <p class="sec-body">Eight sub-sectors scored 0–10 for fragility every issue. Time-series tracking reveals where the system is accumulating brittleness before it breaks.</p>
       <span class="sec-deco">03</span>
     </div>
-    <div class="section-card reveal" style="transition-delay:0.15s">
+    <div class="section-card reveal" style="transition-delay: 0.15000000000000002s;">
       <span class="sec-num">Section 04</span>
       <div class="sec-title">Hidden Profit Pools</div>
       <p class="sec-body">2–3 profit pool insights that are counterintuitive or structurally obscured from standard P&amp;L analysis. The conventional view, the actual economics, why it stays hidden.</p>
       <span class="sec-deco">04</span>
     </div>
-    <div class="section-card reveal" style="transition-delay:0.2s">
+    <div class="section-card reveal" style="transition-delay: 0.2s;">
       <span class="sec-num">Section 05 A–H</span>
       <div class="sec-title">Category Intelligence</div>
       <p class="sec-body">Eight segment analyses across Life, Health, Short-Term, Commercial, Specialised, Reinsurance, Microinsurance, and Insurtech. One contrarian insight, one risk, one opportunity each.</p>
       <span class="sec-deco">05</span>
     </div>
-    <div class="section-card reveal" style="transition-delay:0.25s">
+    <div class="section-card reveal" style="transition-delay: 0.25s;">
       <span class="sec-num">Section 06</span>
       <div class="sec-title">Second-Order Effects</div>
       <p class="sec-body">One trend mapped through its full causal chain — from the obvious first-order effect the industry is discussing to the non-obvious third-order structural implication it is not.</p>
       <span class="sec-deco">06</span>
     </div>
-    <div class="section-card reveal" style="transition-delay:0.3s">
+    <div class="section-card reveal" style="transition-delay: 0.30000000000000004s;">
       <span class="sec-num">Section 07</span>
       <div class="sec-title">Strategic Recommendations</div>
-      <p class="sec-body">Nine moves — three for insurers, three for brokers, three for regulators. Specific, actionable, derived from this week's analysis. Each with a "Why Now" justification.</p>
+      <p class="sec-body">Nine moves — three for insurers, three for brokers, three for regulators. Specific, actionable, derived from this week&#39;s analysis. Each with a &#34;Why Now&#34; justification.</p>
       <span class="sec-deco">07</span>
     </div>
-    <div class="section-card reveal" style="transition-delay:0.35s">
+    <div class="section-card reveal" style="transition-delay: 0.35000000000000003s;">
       <span class="sec-num">Section 08</span>
       <div class="sec-title">The Contrarian Take</div>
-      <p class="sec-body">One committed, uncomfortable position. What important truth about SA insurance does almost no one agree with? Structured on Peter Thiel's contrarian truth framework.</p>
+      <p class="sec-body">One committed, uncomfortable position. What important truth about SA insurance does almost no one agree with? Structured on Peter Thiel&#39;s contrarian truth framework.</p>
       <span class="sec-deco">08</span>
     </div>
-    <div class="section-card reveal" style="transition-delay:0.4s">
+    <div class="section-card reveal" style="transition-delay: 0.4s;">
       <span class="sec-num">Section 09</span>
       <div class="sec-title">Closing Line</div>
-      <p class="sec-body">One sentence. Economist-style. The week's essential insight crystallised in a form that is memorable and structurally complete. Maximum thirty words. No exceptions.</p>
+      <p class="sec-body">One sentence. Economist-style. Maximum thirty words. The week&#39;s essential insight, crystallised.</p>
       <span class="sec-deco">09</span>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ FRAMEWORKS ═══════════ -->
 <section class="frameworks-section">
   <div class="frameworks-inner">
     <div class="pipeline-header reveal">
-      <span class="section-label">Intellectual DNA</span>
+      <span class="eyebrow">Intellectual DNA</span>
       <h2 class="section-heading">Four Frameworks, Applied Relentlessly</h2>
-      <p class="section-sub">Every agent in the AFI pipeline applies these four frameworks. They are not referenced decoratively — they determine what gets written and what gets cut.</p>
+      <p class="section-sub">Every agent in the AFI pipeline applies these four frameworks.
+        They are not referenced decoratively — they determine what gets written
+        and what gets cut.</p>
     </div>
 
     <div class="frameworks-grid">
-      <div class="fw-card reveal">
+      <div class="fw-card reveal" style="transition-delay: 0.0s;">
         <div class="fw-thinker">Taleb</div>
         <span class="fw-concept">Antifragility &amp; Tail Risk</span>
-        <p class="fw-body">Classify systems as fragile, robust, or antifragile. Prioritise the shape of distributions over their means. Identify who has skin in the game and who is transferring fragility to others. The Fragility Index and Black Swan Watch exist because of this framework.</p>
+        <p class="fw-body">Classify systems as fragile, robust, or antifragile. Prioritise the shape of distributions
+over their means. Identify who has skin in the game and who is transferring fragility to
+others. The Fragility Index and Black Swan Watch exist because of this framework.</p>
       </div>
-      <div class="fw-card reveal" style="transition-delay:0.1s">
+      <div class="fw-card reveal" style="transition-delay: 0.08s;">
         <div class="fw-thinker">Thiel</div>
         <span class="fw-concept">Monopoly, Secrets &amp; Zero-to-One</span>
-        <p class="fw-body">Identify structural advantages that compound. Find the "secret" — the thing that is true but that most of the industry has not accepted. Distinguish genuine innovation from competitive iteration. The Contrarian Take is a Thiel question answered weekly.</p>
+        <p class="fw-body">Identify structural advantages that compound. Find the &#34;secret&#34; — the thing that is true
+but that most of the industry has not accepted. Distinguish genuine innovation from
+competitive iteration. The Contrarian Take is a Thiel question answered weekly.</p>
       </div>
-      <div class="fw-card reveal" style="transition-delay:0.05s">
+      <div class="fw-card reveal" style="transition-delay: 0.16s;">
         <div class="fw-thinker">Systems</div>
         <span class="fw-concept">Feedback Loops &amp; Nonlinearity</span>
-        <p class="fw-body">Map reinforcing and balancing loops. Identify leverage points. Expect nonlinear outcomes from linear-seeming inputs. Second-order effects are not optional analysis — they are the core of AFI's predictive value. The Second-Order Effects section exists because of this framework.</p>
+        <p class="fw-body">Map reinforcing and balancing loops. Identify leverage points. Expect nonlinear outcomes
+from linear-seeming inputs. Second-order effects are not optional analysis — they are the
+core of AFI&#39;s predictive value.</p>
       </div>
-      <div class="fw-card reveal" style="transition-delay:0.15s">
+      <div class="fw-card reveal" style="transition-delay: 0.24s;">
         <div class="fw-thinker">Kahneman</div>
         <span class="fw-concept">Behavioral Economics</span>
-        <p class="fw-body">Policyholders, brokers, and underwriters do not behave as rational agents. Identify the specific biases — loss aversion, present bias, herding, availability bias — producing the mispricings, fragilities, and hidden profit pools that AFI exists to surface.</p>
+        <p class="fw-body">Policyholders, brokers, and underwriters do not behave as rational agents. Identify the
+specific biases — loss aversion, present bias, herding, availability bias —
+producing the mispricings, fragilities, and hidden profit pools that AFI exists to surface.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ ISSUE ARCHIVE ═══════════ -->
 <section class="archive-section" id="archive">
   <div class="reveal">
-    <span class="section-label">Issue Archive</span>
+    <span class="eyebrow">Issue Archive</span>
     <h2 class="section-heading">Published Issues</h2>
   </div>
 
-  <div class="issues-list reveal" style="transition-delay:0.1s">
+  <div class="issues-list reveal" style="transition-delay: 0.1s;">
 
-    <!-- ISSUE 002 — latest -->
-    <a href="issue-002.html" class="issue-row latest-issue">
+    <a href="issue-002.html" class="issue-row is-latest">
       <div class="issue-num-col">
-        Issue 002<br>
-        <span style="color:var(--muted);font-size:0.55rem;">12 May 2026</span>
+        Issue 002
+        <span class="issue-date">19 May 2026</span>
       </div>
-      <div class="issue-title-col">
-        <div class="issue-row-title">The Insurability Cliff: How Municipal Failure Is Redrawing South Africa's Property Risk Map</div>
-        <div class="issue-row-thesis">Municipal infrastructure crisis has crossed an actuarial threshold — property risk in secondary cities is migrating from expensive-to-insure to structurally uninsurable, and pricing signals are running 18 months behind physical reality.</div>
-        <div class="issue-row-tags">
-          <span class="issue-tag">Macro Lens</span>
-          <span class="issue-tag">Infrastructure</span>
-          <span class="issue-tag">Commercial Lines</span>
-          <span class="issue-tag">Reinsurance</span>
-          <span class="issue-tag">Agg Fragility 6.9/10</span>
-        </div>
+      <div>
+        <div class="issue-row-title">When the Constitutional Scaffolding Shakes</div>
+        <div class="issue-row-thesis">GNU fragility and the insurance sector&#39;s mispriced political exposure — NHI ConCourt judgment reserved, Phala Phala impeachment revived, and Iran war macro risk arrive simultaneously into an unprepared market.</div>
       </div>
       <span class="issue-cta">Read →</span>
     </a>
-
-    <!-- ISSUE 001 -->
     <a href="issue-001.html" class="issue-row">
       <div class="issue-num-col">
-        Issue 001<br>
-        <span style="color:var(--muted);font-size:0.55rem;">May 2026</span>
+        Issue 001
+        <span class="issue-date">May 2026</span>
       </div>
-      <div class="issue-title-col">
+      <div>
         <div class="issue-row-title">The Cities That Insurance Cannot Hold</div>
         <div class="issue-row-thesis">Municipal infrastructure collapse has crossed an actuarial threshold — and the reinsurance market is moving before the primary market does.</div>
-        <div class="issue-row-tags">
-          <span class="issue-tag">Pilot Issue</span>
-          <span class="issue-tag">Macro / Political Lens</span>
-        </div>
       </div>
       <span class="issue-cta">Read →</span>
     </a>
+
+    <div class="coming-soon-row">
+      <div class="issue-num-col mono" style="color: var(--muted);">
+        Issue 003
+      </div>
+      <div>
+        <div class="issue-row-title">Forthcoming</div>
+        <div class="issue-row-thesis" style="color: var(--muted);">Next issue in production.</div>
+      </div>
+    </div>
 
   </div>
 </section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
 <footer class="reg-bar">
   <div class="reg-badges">
     <span class="reg-badge">FSCA Framework</span>
@@ -1132,12 +1087,16 @@ body::before {
     <span class="reg-badge">NHI Act</span>
     <span class="reg-badge">Insurance Act 18/2017</span>
     <span class="reg-badge">Twin Peaks</span>
-    <span class="reg-badge">COFI</span>
+    <span class="reg-badge">COFI Bill</span>
   </div>
-  <p class="reg-disclaimer">ANTIFRAGILE INSURANCE does not constitute financial, legal, or regulatory advice. All analysis represents original editorial judgement.</p>
+  <p class="reg-disclaimer">
+    Antifragile Insurance does not constitute financial, legal, or regulatory advice.
+    All analysis represents original editorial judgement.
+  </p>
 </footer>
 
 <script>
+// Scroll reveal — identical behaviour, no framework needed
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -1149,5 +1108,6 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
