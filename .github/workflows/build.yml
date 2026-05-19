@@ -1,0 +1,44 @@
+name: Build and Deploy AFI Pages
+
+on:
+  push:
+    branches:
+      - main  # Adjust if your default branch is different
+    paths:
+      - 'afi-build/content/**'  # Triggers on changes to your markdown files
+  workflow_dispatch:  # Allows you to manually trigger the workflow from GitHub's UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install jinja2 markdown pyyaml
+
+      - name: Build HTML files
+        run: |
+          cd afi-build
+          python build.py --all
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: afi-html-output
+          path: afi-build/output/
+
+      # Optional: Add a step to commit the output files back to the repo
+      - name: Commit built files
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add afi-build/output/
+          git commit -m 'Auto-build HTML files from Markdown source' || exit 0
+          git push
