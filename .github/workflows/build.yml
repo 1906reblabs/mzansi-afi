@@ -24,21 +24,20 @@ jobs:
         run: pip install jinja2 markdown pyyaml
 
       - name: Build HTML files
-        run: |
-          cd afi-build
-          python build.py --all
+  run: |
+    cd afi-build
+    python build.py --all
 
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: afi-html-output
-          path: afi-build/output/
+- name: Copy output to root for GitHub Pages
+  run: |
+    cp -r afi-build/output/* .
+    # If you want to keep a clean root, put them in /docs instead:
+    # mkdir -p docs && cp -r afi-build/output/* docs/
 
-      # Optional: Add a step to commit the output files back to the repo
-      - name: Commit built files
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add afi-build/output/
-          git commit -m 'Auto-build HTML files from Markdown source' || exit 0
-          git push
+- name: Commit built files
+  run: |
+    git config --global user.name 'github-actions[bot]'
+    git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+    git add index.html issue-*.html   # or if using docs: git add docs/
+    git commit -m 'Auto-build HTML from markdown' || exit 0
+    git push
