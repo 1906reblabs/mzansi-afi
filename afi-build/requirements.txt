@@ -1,0 +1,7 @@
+# afi-build/requirements.txt
+# Python dependencies for the AFI static site build pipeline.
+# Install with: pip install -r requirements.txt
+
+Jinja2>=3.1.4
+Markdown>=3.6
+PyYAML>=6.0.1
