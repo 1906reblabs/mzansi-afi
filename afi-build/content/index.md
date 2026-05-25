@@ -1,4 +1,15 @@
 ---
+issues:
+  - number: "004"
+    date: "26 May 2026"
+    title: "Your New Issue Title"
+    thesis: "Single sentence weekly thesis."
+    href: "issue-004.html"
+    is_latest: true
+
+  - number: "003"           # ← change is_latest to false
+    ...
+    is_latest: false
 # ── SITE METADATA ─────────────────────────────────────────────────────────────
 site_name: "Antifragile Insurance"
 site_tagline: "Strategic Intelligence · South African Insurance Industry"
@@ -9,7 +20,7 @@ site_description: >
 
 # ── HERO ──────────────────────────────────────────────────────────────────────
 hero:
-  eyebrow: "Issue 003 — 19 May 2026"
+  eyebrow: "Issue 004 — 26 May 2026"
   headline_plain: "Risk Intelligence"
   headline_em: "Without the Comfort"
   body: >
@@ -17,10 +28,10 @@ hero:
     We identify what is fragile before it breaks, where money is actually made
     before competitors notice, and what the industry believes that is not yet true.
   cta_primary_label: "Read the Latest Issue"
-  cta_primary_href: "issue-003.html"
+  cta_primary_href: "issue-004.html"
   cta_secondary_label: "Browse Archive"
   cta_secondary_href: "#archive"
-  deco_number: "003"
+  deco_number: "004"
 
 # ── LATEST ISSUE STRIP ────────────────────────────────────────────────────────
 latest:
@@ -41,8 +52,8 @@ nav:
     - label: "Issues"
       href: "#archive"
   cta:
-    label: "Read Issue 003 →"
-    href: "issue-003.html"
+    label: "Read Issue 004 →"
+    href: "issue-004.html"
 
 # ── ISSUE ARCHIVE ─────────────────────────────────────────────────────────────
 # Add new entries at the TOP (descending order). Mark latest with is_latest: true.
