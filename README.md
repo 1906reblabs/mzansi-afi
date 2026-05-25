@@ -2,149 +2,315 @@
 
 **Weekly strategic intelligence for the South African insurance industry.**
 
-AFI is not a news summary. It is not a regulatory update service. It is not a balanced view. It is a weekly argument — a specific, defensible claim about the SA insurance market, supported by evidence and designed to be uncomfortable for at least one powerful constituency.
-
-The publication is read by C-suite executives, senior underwriters, risk officers, FSCA and PA officials, institutional investors, and senior brokers. Every issue assumes deep domain knowledge and delivers in return the one thing premium readers cannot get elsewhere: non-obvious insight, stated directly.
-
----
-
-## The Publication
-
-Each issue contains nine sections built around a single weekly thesis:
-
-| Section | Content |
-|---|---|
-| **01 — Executive Brief** | The week's argument in 200 words. Thesis, why it matters now, who wins and who loses. |
-| **02 — Black Swan Watch** | 3–5 tail risks the industry is systematically underestimating. Each includes an underestimation argument, a nonlinear impact scenario, and an antifragility opportunity. |
-| **03 — Fragility Index** | All eight SA insurance sub-sectors scored 0–10 for fragility every issue. Time-series tracking reveals where the system is accumulating brittleness before it breaks. |
-| **04 — Hidden Profit Pools** | 2–3 profit pool insights that are counterintuitive or structurally obscured from standard P&L analysis. |
-| **05 A–H — Category Intelligence** | Eight segment analyses: Life, Health, Short-Term, Commercial, Specialised, Reinsurance, Microinsurance, and Insurtech. One contrarian insight, one risk scenario, one opportunity per category. |
-| **06 — Second-Order Effects** | One trend mapped through its full causal chain — from the obvious first-order effect to the non-obvious third-order structural implication. |
-| **07 — Strategic Recommendations** | Nine specific moves: three for insurers, three for brokers, three for regulators. Derived from this week's analysis. Each with a "Why Now" justification. |
-| **08 — The Contrarian Take** | One committed, uncomfortable position. Built on Peter Thiel's framework: what important truth does almost no one in the industry currently agree with? |
-| **09 — Closing Line** | One sentence. Maximum thirty words. The week's essential insight, crystallised. |
+One thesis per issue. Nine sections. Nothing published without Auditor clearance.  
+Built on a ten-agent AI pipeline. Content in Markdown. HTML generated automatically.
 
 ---
 
-## The Production System
+## Live Publication
 
-Every issue is produced by a ten-agent AI pipeline. Each agent has a distinct mandate, receives full upstream context, and passes structured output downstream. Nothing is published without Auditor clearance.
+Served via GitHub Pages from the root of the `main` branch.
 
-```
-MEMORY AGENT          Maintains persistent registers of prior issues, claim performance,
-                      fragility score history, and contrarian positions taken.
-
-PLANNING AGENT        Selects the weekly thesis. Produces a full Issue Brief and individual
-                      briefing packages for every downstream agent.
-
-ORCHESTRATOR          Distributes the thesis. Manages context passing. Enforces quality gates.
-
-RAG AGENT             Evidence engine. Seven knowledge domains. Responds to structured evidence
-                      queries from any agent at any pipeline stage.
-
-RESEARCH INTELLIGENCE Scans six signal domains — regulatory, macro, climate, political,
-                      market, behavioural — to produce the Weekly Intelligence Brief.
-
-RISK ANALYST          Produces Section 02 (Black Swan Watch) and Section 03 (Fragility Index)
-                      using Taleb's tail-risk and antifragility frameworks.
-
-CATEGORY ANALYST      Produces all eight Section 05 segments. One contrarian insight,
-                      one risk scenario, one opportunity per category.
-
-STRATEGIC ANALYST     Produces Section 04 (Profit Pools), Section 06 (Second-Order Effects),
-                      and Section 07 (Recommendations).
-
-WRITER-EDITOR         Writes the title, Executive Brief, Contrarian Take, and Closing Line.
-                      Performs a full editorial pass enforcing voice and coherence.
-
-AUDITOR AGENT         Seven-pass quality audit: factual accuracy, logical consistency,
-                      specificity, longitudinal consistency, regulatory accuracy,
-                      intellectual honesty, and publication readiness.
-```
-
-The pipeline enforces a publication decision protocol: **CLEARED** (≥85/100, zero blocking issues), **CLEARED WITH REVISIONS** (70–84), or **RETURNED FOR REVISION** (<70). Nothing publishes without Auditor clearance.
-
----
-
-## Intellectual Frameworks
-
-Four frameworks are applied by every agent, every issue. They are not referenced decoratively — they determine what gets written and what gets cut.
-
-**Taleb — Antifragility & Tail Risk**
-Classify systems as fragile, robust, or antifragile. Prioritise the shape of distributions over their means. Look for convexity. Identify who has skin in the game and who is transferring fragility to others. The Fragility Index and Black Swan Watch sections exist because of this framework.
-
-**Thiel — Monopoly, Secrets & Zero-to-One**
-Identify structural advantages that compound. Find the secret — the thing that is true but that most of the industry has not yet accepted. Distinguish genuine innovation from competitive iteration. The Contrarian Take is a Thiel question answered every week.
-
-**Systems Thinking — Feedback Loops & Nonlinearity**
-Map reinforcing and balancing loops. Identify leverage points. Expect nonlinear outcomes from linear-seeming inputs. Second-order effects are not optional analysis; they are the core of AFI's predictive value. The Second-Order Effects section exists because of this framework.
-
-**Behavioral Economics — Irrational Actors**
-Policyholders, brokers, and underwriters do not behave as rational agents. Identify the specific biases — loss aversion, present bias, herding, availability bias, overconfidence — producing the mispricings, fragilities, and hidden profit pools that AFI exists to surface.
-
----
-
-## Regulatory Framework
-
-All analysis applies accurate knowledge of the South African insurance regulatory architecture. The publication never conflates FSCA and PA mandates, never refers to the abolished FSB, and always accurately represents the current status of pending legislation.
-
-Key framework references:
-- **FSCA** — market conduct, TCF, intermediary oversight, COFI Bill
-- **Prudential Authority** — solvency, SAM capital framework, systemic risk
-- **Council for Medical Schemes** — PMBs, NHI interface, scheme solvency
-- **Insurance Act 18 of 2017** — primary legislative framework
-- **Financial Sector Regulation Act 9 of 2017** — Twin Peaks architecture
-- **NHI Act** — enacted, implementation delayed, subject to court challenge
-- **COFI Bill** — not yet enacted as of Issue 001
-
----
-
-## Quality Standards
-
-**Non-obvious or nothing.** Every claim is tested against the Specificity Test: would this appear in a generic industry report from a major consultancy? If yes, it does not run.
-
-**No hedging.** "Could potentially" becomes the direct claim. "May be at risk" becomes "is fragile." Confidence is the publication's voice. Where genuine uncertainty exists, it is quantified or bounded — not obscured.
-
-**One intellectual spine per issue.** Every section connects to the weekly thesis or it does not appear.
-
-**Intellectual honesty over thesis protection.** If evidence contradicts the weekly thesis, it is acknowledged. Motivated reasoning — selecting only confirming evidence — is the most serious failure the Auditor can find, and the Memory Agent will record it.
-
----
-
-## Issues
-
-| Issue | Title | Thesis | Date |
-|---|---|---|---|
-| [001](issue-001.html) | The Cities That Insurance Cannot Hold | Municipal infrastructure collapse has crossed an actuarial threshold — reinsurers are moving before the primary market does. | May 2026 |
+| Issue | Title | Date |
+|---|---|---|
+| [003](issue-003.html) | When the Constitutional Scaffolding Shakes | 19 May 2026 |
+| [002](issue-002.html) | Issue 002 | May 2026 |
+| [001](issue-001.html) | The Cities That Insurance Cannot Hold | May 2026 |
 
 ---
 
 ## Repository Structure
 
 ```
-/
-├── index.html          Homepage (GitHub Pages)
-├── issue-001.html      Pilot issue
-├── README.md           This file
-└── /agents             Agent skill files (production system prompts)
-    ├── AFI-ORCHESTRATOR.md
-    ├── AFI-MEMORY-AGENT.md
-    ├── AFI-PLANNING-AGENT.md
-    ├── AFI-RAG-AGENT.md
-    ├── AFI-RESEARCH-INTELLIGENCE.md
-    ├── AFI-RISK-ANALYST.md
-    ├── AFI-CATEGORY-ANALYST.md
-    ├── AFI-STRATEGIC-ANALYST.md
-    ├── AFI-WRITER-EDITOR.md
-    └── AFI-AUDITOR-AGENT.md
+mzansi-afi/
+│
+├── .github/
+│   └── workflows/
+│       └── build.yml          ← Auto-builds HTML whenever content changes
+│
+├── afi-build/                 ← Build system (not served by GitHub Pages)
+│   ├── afi_parser.py          ← Parses .md content files into template context
+│   ├── build.py               ← CLI build runner
+│   ├── requirements.txt       ← Python dependencies (Jinja2, Markdown, PyYAML)
+│   ├── content/               ← LLM-generated content files (what you edit)
+│   │   ├── index.md           ← Homepage content — update issues: block each week
+│   │   ├── issue-001.md       ← Issue 001 content
+│   │   ├── issue-002.md       ← Issue 002 content
+│   │   └── issue-003.md       ← Issue 003 content
+│   └── templates/             ← Jinja2 HTML templates (write-once, never edit)
+│       ├── index.j2           ← Homepage template
+│       └── issue.j2           ← Issue page template
+│
+├── index.html                 ← Generated — do not edit by hand
+├── issue-001.html             ← Generated — do not edit by hand
+├── issue-002.html             ← Generated — do not edit by hand
+├── issue-003.html             ← Generated — do not edit by hand
+│
+└── README.md
+```
+
+> **Rule:** Only ever edit files inside `afi-build/content/`.  
+> Everything in the repo root (`*.html`) is generated automatically.
+
+---
+
+## How the Build Pipeline Works
+
+```
+LLM generates              Python processes           Jinja2 renders
+──────────────────         ──────────────────────     ─────────────────────
+content/index.md    →      afi_parser.parse_index()   →   index.j2   →  index.html
+content/issue-NNN.md →     afi_parser.parse_issue()   →   issue.j2   →  issue-NNN.html
+```
+
+The LLM writes only the `.md` content files — structured YAML front matter for all data, Markdown body for prose. The parser, templates, and build runner are written once and never need to change (unless the publication's design changes).
+
+### Token efficiency
+
+| Task | Old approach | New approach | Saving |
+|---|---|---|---|
+| Generate one issue | ~18,000 tokens (full HTML) | ~4,500 tokens (Markdown) | **~75%** |
+| Update homepage | ~8,000 tokens (full HTML) | ~200 tokens (YAML edit) | **~97%** |
+| Build HTML | ~18,000 tokens | 0 tokens (Python, ~60ms) | **100%** |
+
+---
+
+## Automated Build (GitHub Actions)
+
+The workflow in `.github/workflows/build.yml` runs automatically whenever any file in `afi-build/content/` is pushed to `main`.
+
+**Trigger conditions:**
+- Push to `main` with changes to `afi-build/content/**.md`
+- Push to `main` with changes to `afi-build/templates/**.j2`
+- Push to `main` with changes to `afi-build/afi_parser.py`
+- Manual trigger via the GitHub Actions UI
+
+**What the workflow does:**
+1. Checks out the repository
+2. Installs Python 3.11 and dependencies from `afi-build/requirements.txt`
+3. Runs `python3 build.py --all --output-dir ..` (writes HTML to repo root)
+4. Commits and pushes any changed HTML files as `github-actions[bot]`
+
+The commit message includes `[skip ci]` to prevent an infinite build loop.
+
+---
+
+## Producing a New Issue
+
+### Step 1 — Generate the content file
+
+Ask the AI pipeline to produce `content/issue-NNN.md` using the schema below.  
+This is the only file the LLM writes. No HTML. No CSS.
+
+### Step 2 — Update the homepage content
+
+In `afi-build/content/index.md`, add the new issue to the top of the `issues:` YAML block:
+
+```yaml
+issues:
+  - number: "004"
+    date: "26 May 2026"
+    title: "Your New Issue Title"
+    thesis: "Single sentence weekly thesis."
+    href: "issue-004.html"
+    is_latest: true
+
+  - number: "003"           # ← change is_latest to false
+    ...
+    is_latest: false
+```
+
+Also update `hero.eyebrow`, `hero.deco_number`, `hero.cta_primary_href`, `latest.*`, `nav.cta`, and `next_issue_number`.
+
+### Step 3 — Push to GitHub
+
+```bash
+git add afi-build/content/
+git commit -m "content: add issue 004"
+git push
+```
+
+The GitHub Action takes it from there. Within ~30 seconds, `issue-004.html` and an updated `index.html` will be committed to the repo and live on GitHub Pages.
+
+### Step 4 — Build locally (optional)
+
+```bash
+cd afi-build
+pip install -r requirements.txt
+python3 build.py --all          # writes to afi-build/output/
+python3 build.py --issue 004    # single issue only
 ```
 
 ---
 
-## Deployment
+## Issue Content File Schema
 
-This repository is published via GitHub Pages. The homepage is `index.html`. Each issue is a standalone HTML file linked from the homepage archive.
+Every issue is a single Markdown file: `afi-build/content/issue-NNN.md`
+
+```
+─────────────────────────────────────────────────────────────────────────────
+YAML FRONT MATTER  (structured data — everything the template loops over)
+─────────────────────────────────────────────────────────────────────────────
+---
+issue_number:  "004"
+date:          "26 May 2026"
+title:         "Full issue title"
+thesis:        "Single sentence weekly thesis."
+lens:          "Regulatory"
+audit_score:   87
+contrarian_consensus: "The consensus belief being challenged..."
+
+fragility_scores:
+  aggregate: 6.8
+  health:         {score: 9, trend: "↑", text: "...", breaks_first: "..."}
+  commercial:     {score: 8, trend: "↑", text: "...", breaks_first: "..."}
+  short_term:     {score: 7, trend: "→", text: "...", breaks_first: "..."}
+  reinsurance:    {score: 7, trend: "↑", text: "...", breaks_first: "..."}
+  life:           {score: 6, trend: "→", text: "...", breaks_first: "..."}
+  specialised:    {score: 6, trend: "↑", text: "...", breaks_first: "..."}
+  microinsurance: {score: 5, trend: "→", text: "...", breaks_first: "..."}
+  insurtech:      {score: 6, trend: "↑", text: "...", breaks_first: "..."}
+
+black_swans:
+  - name: "Short title (3–5 words)"
+    tag: "Political"
+    timeline: "Medium — 12–30 months"
+    underestimation: "..."
+    scenario: "..."
+    amplifiers: "..."
+    opportunity: "..."
+
+profit_pools:
+  - title: "Pool Title"
+    subtitle: "One-line mechanism"
+    conventional_view: "..."
+    actual_economics: "..."
+    why_hidden: "..."
+    best_positioned: "..."
+    risk: "..."
+
+second_order:
+  callout: "The trend being analysed this week."
+  first_title:    "First-Order Effects — Obvious (0–6 months)"
+  first_content:  "Paragraph text. Supports **bold**."
+  second_title:   "Second-Order Effects — Non-Obvious (6–24 months)"
+  second_content: "Multi-paragraph text. **Bold headings** supported."
+  third_title:    "Third-Order Effects — Structural Implications (2–7 years)"
+  third_content:  "Paragraph text."
+  pivot:          "The strategic pivot point sentence."
+
+recommendations:
+  insurers:
+    - move: "Short action title"
+      body: "What to do specifically."
+      why_now: "Why this week, not next month."
+  brokers:
+    - move: "..."
+      body: "..."
+      why_now: "..."
+  regulators:
+    - move: "..."
+      body: "..."
+      why_now: "..."
+
+categories:
+  life:
+    contrarian:  "..."
+    risk:        "..."
+    opportunity: "..."
+  health:
+    contrarian:  "..."
+    risk:        "..."
+    opportunity: "..."
+  short_term:    {contrarian: "...", risk: "...", opportunity: "..."}
+  commercial:    {contrarian: "...", risk: "...", opportunity: "..."}
+  specialised:   {contrarian: "...", risk: "...", opportunity: "..."}
+  reinsurance:   {contrarian: "...", risk: "...", opportunity: "..."}
+  microinsurance:{contrarian: "...", risk: "...", opportunity: "..."}
+  insurtech:     {contrarian: "...", risk: "...", opportunity: "..."}
+---
+
+─────────────────────────────────────────────────────────────────────────────
+MARKDOWN BODY  (prose sections — rendered to HTML by the parser)
+─────────────────────────────────────────────────────────────────────────────
+
+## Executive Brief
+150–200 words. Three paragraphs: thesis statement, why this week,
+who wins and who loses. Supports **bold** and *italic*.
+
+## The Contrarian Take
+200–250 words. Three paragraphs: the counter-argument, the evidence,
+the strategic implication. Supports **bold** for emphasis.
+
+## Closing Line
+One sentence only. Maximum 30 words. No exclamation marks.
+```
 
 ---
 
-*ANTIFRAGILE INSURANCE is published weekly. All analysis represents original editorial judgement and does not constitute financial, legal, or regulatory advice.*
+## Ten-Agent Production Pipeline
+
+Every issue is produced by a coordinated AI pipeline before the content file is written.
+
+| Step | Agent | Produces |
+|---|---|---|
+| 01 | Memory Agent | Pre-production brief — prior issues, open claims, fragility trends |
+| 02 | Planning Agent | Weekly thesis, section emphasis map, agent briefing packages |
+| 03 | Orchestrator | Thesis distribution, quality gates |
+| 04 | RAG Agent | Evidence retrieval from 7 knowledge domains (on demand) |
+| 05 | Research Intelligence | Weekly Intelligence Brief across 6 signal domains |
+| 06 | Risk Analyst | Black Swan Watch (§2), Fragility Index (§3) |
+| 07 | Category Analyst | Category Intelligence §5A–5H |
+| 08 | Strategic Analyst | Hidden Profit Pools (§4), Second-Order Effects (§6), Recommendations (§7) |
+| 09 | Writer-Editor | Executive Brief (§1), Contrarian Take (§8), Closing Line (§9), full editorial pass |
+| 10 | Auditor Agent | 7-pass quality audit — nothing publishes without clearance |
+
+The pipeline outputs a single `.md` content file. The build system converts it to HTML.
+
+---
+
+## Four Intellectual Frameworks
+
+Every agent applies these frameworks. They are not referenced decoratively — they determine what gets written and what gets cut.
+
+**Taleb — Antifragility & Tail Risk**  
+Classify systems as fragile, robust, or antifragile. Prioritise the shape of distributions over their means. Identify who has skin in the game.
+
+**Thiel — Monopoly, Secrets & Zero-to-One**  
+Find the "secret" — the thing that is true but that most of the industry has not accepted. The Contrarian Take is a Thiel question answered weekly.
+
+**Systems — Feedback Loops & Nonlinearity**  
+Map reinforcing and balancing loops. Second-order effects are not optional analysis — they are the core of AFI's predictive value.
+
+**Kahneman — Behavioral Economics**  
+Policyholders, brokers, and underwriters do not behave as rational agents. Identify the specific biases producing the mispricings and hidden profit pools that AFI exists to surface.
+
+---
+
+## Setup
+
+### GitHub Pages configuration
+
+1. Go to **Settings → Pages**
+2. Source: **Deploy from a branch**
+3. Branch: `main` / `/ (root)`
+4. Save
+
+The site will be live at `https://<your-username>.github.io/mzansi-afi/`
+
+### Local development
+
+```bash
+git clone https://github.com/<your-username>/mzansi-afi.git
+cd mzansi-afi/afi-build
+pip install -r requirements.txt
+python3 build.py --all          # generates HTML into afi-build/output/
+python3 build.py --all --output-dir ..   # generates HTML into repo root
+```
+
+---
+
+## Disclaimer
+
+ANTIFRAGILE INSURANCE does not constitute financial, legal, or regulatory advice.  
+All analysis represents original editorial judgement.
