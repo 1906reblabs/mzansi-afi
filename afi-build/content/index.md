@@ -1,15 +1,4 @@
 ---
-issues:
-  - number: "004"
-    date: "26 May 2026"
-    title: "Your New Issue Title"
-    thesis: "Single sentence weekly thesis."
-    href: "issue-004.html"
-    is_latest: true
-
-  - number: "003"           # ← change is_latest to false
-    ...
-    is_latest: false
 # ── SITE METADATA ─────────────────────────────────────────────────────────────
 site_name: "Antifragile Insurance"
 site_tagline: "Strategic Intelligence · South African Insurance Industry"
@@ -35,12 +24,12 @@ hero:
 
 # ── LATEST ISSUE STRIP ────────────────────────────────────────────────────────
 latest:
-  issue_number: "003"
-  date: "19 May 2026"
-  lens: "Political / Regulatory Lens"
-  fragility_score: "6.9/10"
-  title: "When the Constitutional Scaffolding Shakes"
-  href: "issue-003.html"
+  issue_number: "004"
+  date: "26 May 2026"
+  lens: "Regulatory Lens"
+  fragility_score: "6.8/10"
+  title: "The Performance Test"
+  href: "issue-004.html"
 
 # ── NAVIGATION ────────────────────────────────────────────────────────────────
 nav:
@@ -58,6 +47,17 @@ nav:
 # ── ISSUE ARCHIVE ─────────────────────────────────────────────────────────────
 # Add new entries at the TOP (descending order). Mark latest with is_latest: true.
 issues:
+  - number: "004"
+    date: "26 May 2026"
+    title: "The Performance Test"
+    thesis: >
+      The COFI Bill is not arriving as a compliance challenge — it is arriving
+      as a performance audit. Commissioner Kamlana's second five-year mandate
+      begins next week with one unfinished piece of business, and 51 enforcement
+      actions totalling R120 million is the marking guide.
+    href: "issue-004.html"
+    is_latest: true
+
   - number: "003"
     date: "19 May 2026"
     title: "When the Constitutional Scaffolding Shakes"
@@ -66,7 +66,7 @@ issues:
       NHI ConCourt judgment reserved, Phala Phala impeachment revived,
       and Iran war macro risk arrive simultaneously into an unprepared market.
     href: "issue-003.html"
-    is_latest: true
+    is_latest: false
 
   - number: "002"
     date: "May 2026"
@@ -86,7 +86,7 @@ issues:
     is_latest: false
 
 # Placeholder for next issue (rendered as greyed-out "forthcoming")
-next_issue_number: "004"
+next_issue_number: "005"
 
 # ── REGULATORY FOOTER BADGES ──────────────────────────────────────────────────
 reg_badges:
