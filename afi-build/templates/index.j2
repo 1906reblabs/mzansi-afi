@@ -1,0 +1,328 @@
+{#
+  templates/index.j2
+  ──────────────────
+  Jinja2 template for the AFI homepage (index.html).
+  Receives context from afi_parser.parse_index() — see afi_parser.py.
+
+  Context variables
+  ─────────────────
+  site, tagline, description     site metadata
+  nav.links[], nav.cta           navigation
+  hero.*                         hero section config
+  latest.*                       latest issue strip
+  issues[]                       archive list ({number,date,title,thesis,href,is_latest})
+  next_issue_number              forthcoming placeholder number
+  about_html                     rendered Markdown (about section)
+  pillars[]                      [{title, body}]
+  pub_sections[]                 [{number, title, body}]
+  frameworks[]                   [{thinker, concept, body}]
+  agents[]                       [{step, name, role, deco}]
+  reg_badges[]                   footer badge strings
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="{{ description | trim }}">
+<title>{{ site }} — Strategic Intelligence for the SA Insurance Industry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:         #0C0F14;
+  --paper:       #F7F3EC;
+  --gold:        #B8922A;
+  --gold-light:  #D4A843;
+  --muted:       #8A8070;
+  --muted-light: #B0A898;
+  --rule-dark:   rgba(184,146,42,0.2);
+  --rule-light:  rgba(255,255,255,0.07);
+  --gold-glow:   rgba(184,146,42,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:'Crimson Pro',Georgia,serif;font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(184,146,42,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(184,146,42,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.mono{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
+.section-heading{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;color:var(--paper);margin-bottom:1rem}
+.section-sub{font-size:1rem;color:var(--muted);max-width:52ch;margin:0 auto}
+/* masthead */
+.masthead{position:relative;z-index:10;border-bottom:1px solid rgba(184,146,42,0.4);padding:1.8rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.pub-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.pub-desc{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.masthead-nav{display:flex;gap:2rem;align-items:center}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-link:hover{color:var(--gold)}
+.nav-link.cta{color:var(--gold);border:1px solid rgba(184,146,42,0.4);padding:.35rem .9rem;transition:background .2s}
+.nav-link.cta:hover{background:var(--gold-glow)}
+/* hero */
+.hero{position:relative;z-index:1;min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 3rem 5rem;max-width:1100px;margin:0 auto}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.hero-eyebrow::before{content:'';display:inline-block;width:30px;height:1px;background:var(--gold)}
+.hero-headline{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:800;line-height:1.0;letter-spacing:-.02em;color:var(--paper);margin-bottom:2.5rem;max-width:14ch}
+.hero-headline em{color:var(--gold);font-style:italic}
+.hero-body{font-size:1.15rem;color:var(--muted-light);max-width:55ch;margin-bottom:3.5rem;line-height:1.75}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
+.btn-primary{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:.9rem 2.2rem;text-decoration:none;display:inline-block;transition:background .2s,transform .15s}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-secondary{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--paper);border:1px solid rgba(247,243,236,.25);padding:.9rem 2.2rem;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.hero-deco{position:absolute;right:3rem;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:clamp(10rem,18vw,20rem);font-weight:800;color:rgba(184,146,42,0.04);line-height:1;user-select:none;pointer-events:none}
+/* latest strip */
+.latest-strip{position:relative;z-index:1;border-top:1px solid var(--rule-dark);border-bottom:1px solid var(--rule-dark);background:var(--gold-glow);padding:2.5rem 3rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap}
+.latest-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);flex-shrink:0}
+.latest-divider{width:1px;height:40px;background:rgba(184,146,42,.3);flex-shrink:0}
+.latest-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:var(--paper);flex:1;min-width:200px}
+.latest-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--muted);margin-top:.3rem;display:block}
+.latest-read{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(184,146,42,.35);padding:.5rem 1.2rem;flex-shrink:0;transition:background .2s}
+.latest-read:hover{background:var(--gold-glow)}
+/* about */
+.about-section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:7rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.what-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+.what-label::after{content:'';flex:1;height:1px;background:rgba(184,146,42,.25)}
+.what-heading{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;line-height:1.2;color:var(--paper);margin-bottom:1.8rem}
+.about-prose p{color:var(--muted-light);line-height:1.8;margin-bottom:1.1rem}
+.about-prose p:last-child{margin-bottom:0}
+.pillars{display:flex;flex-direction:column}
+.pillar{padding:1.5rem 0;border-bottom:1px solid var(--rule-light);display:flex;gap:1.5rem;align-items:flex-start}
+.pillar:first-child{padding-top:0}
+.pillar-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--gold);flex-shrink:0;padding-top:.2rem;width:1.5rem}
+.pillar-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--paper);margin-bottom:.4rem}
+.pillar-body{font-size:.9rem;color:var(--muted);line-height:1.65}
+/* pipeline */
+.pipeline-section{position:relative;z-index:1;border-top:1px solid var(--rule-light);background:rgba(0,0,0,.3);padding:6rem 3rem}
+.pipeline-inner{max-width:1100px;margin:0 auto}
+.pipeline-header{text-align:center;margin-bottom:4rem}
+.agents-flow{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:rgba(184,146,42,.1);border:1px solid rgba(184,146,42,.1)}
+.agent-tile{background:var(--ink);padding:1.5rem;position:relative;overflow:hidden;transition:background .2s}
+.agent-tile:hover{background:var(--gold-glow)}
+.agent-step{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);opacity:.6;margin-bottom:.5rem;display:block}
+.agent-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--paper);margin-bottom:.4rem;line-height:1.3}
+.agent-role{font-size:.8rem;color:var(--muted);line-height:1.55}
+.agent-deco{position:absolute;bottom:-.5rem;right:.8rem;font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:rgba(184,146,42,.04);line-height:1;pointer-events:none}
+/* sections grid */
+.structure-section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:7rem 3rem}
+.structure-header{margin-bottom:4rem}
+.sections-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.section-card{border:1px solid var(--rule-light);padding:1.5rem;position:relative;overflow:hidden;transition:border-color .2s}
+.section-card:hover{border-color:rgba(184,146,42,.3)}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;color:var(--gold);display:block;margin-bottom:.5rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--paper);margin-bottom:.5rem;line-height:1.3}
+.sec-body{font-size:.85rem;color:var(--muted);line-height:1.6}
+.sec-deco{position:absolute;bottom:-1rem;right:.5rem;font-family:'JetBrains Mono',monospace;font-size:4rem;color:rgba(255,255,255,.02);font-weight:400;line-height:1;pointer-events:none}
+/* frameworks */
+.frameworks-section{position:relative;z-index:1;border-top:1px solid var(--rule-light);background:rgba(0,0,0,.25);padding:6rem 3rem}
+.frameworks-inner{max-width:1100px;margin:0 auto}
+.frameworks-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.fw-card{border-left:2px solid var(--gold);padding:1.5rem 2rem;background:rgba(184,146,42,.03)}
+.fw-thinker{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;font-style:italic;color:var(--gold);margin-bottom:.3rem}
+.fw-concept{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;display:block}
+.fw-body{font-size:.92rem;color:var(--muted-light);line-height:1.7}
+/* archive */
+.archive-section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:7rem 3rem}
+.issues-list{margin-top:3rem;display:flex;flex-direction:column}
+.issue-row{display:grid;grid-template-columns:80px 1fr auto;gap:2rem;align-items:center;padding:1.8rem 0;border-bottom:1px solid var(--rule-light);text-decoration:none;transition:background .15s}
+.issue-row:first-child{border-top:1px solid var(--rule-light)}
+.issue-row:hover{background:var(--gold-glow);padding-left:.75rem}
+.issue-row.is-latest .issue-row-title::after{content:'New';font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:.15rem .45rem;margin-left:.75rem;vertical-align:middle;position:relative;top:-1px}
+.issue-num-col{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--gold)}
+.issue-date{color:var(--muted);font-size:.55rem;display:block;margin-top:.2rem}
+.issue-row-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--paper);margin-bottom:.3rem}
+.issue-row-thesis{font-size:.85rem;color:var(--muted);font-style:italic;line-height:1.5}
+.issue-cta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);opacity:0;transition:opacity .2s;white-space:nowrap}
+.issue-row:hover .issue-cta{opacity:1}
+.coming-soon-row{display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:center;padding:1.8rem 0;border-bottom:1px solid rgba(255,255,255,.04);opacity:.3}
+.coming-soon-row .issue-row-title{color:var(--muted);font-style:italic;font-family:'Playfair Display',serif;font-size:1.1rem}
+/* footer */
+.reg-bar{position:relative;z-index:1;border-top:1px solid var(--rule-dark);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:rgba(0,0,0,.4)}
+.reg-badges{display:flex;gap:.5rem;flex-wrap:wrap}
+.reg-badge{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.25)}
+.reg-disclaimer{font-size:.78rem;color:var(--muted);max-width:500px;text-align:right}
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+/* responsive */
+@media(max-width:900px){.sections-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:750px){
+  .about-section{grid-template-columns:1fr;gap:3rem;padding:4rem 2rem}
+  .hero{padding:4rem 2rem 3rem}
+  .masthead{padding:1.5rem 2rem}
+  .latest-strip{padding:2rem;gap:1.5rem}
+  .hero-deco{display:none}
+  .sections-grid{grid-template-columns:1fr}
+  .frameworks-grid{grid-template-columns:1fr}
+  .structure-section,.archive-section{padding:4rem 2rem}
+  .pipeline-section,.frameworks-section{padding:4rem 2rem}
+  .reg-bar{padding:1.5rem 2rem}
+  .reg-disclaimer{text-align:left}
+  .issue-row{grid-template-columns:60px 1fr;gap:1rem}
+  .issue-cta{display:none}
+}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <div class="pub-name">{{ site }}</div>
+    <div class="pub-desc">{{ tagline }}</div>
+  </div>
+  <nav class="masthead-nav">
+    {% for link in nav.links %}
+    <a href="{{ link.href }}" class="nav-link">{{ link.label }}</a>
+    {% endfor %}
+    <a href="{{ nav.cta.href }}" class="nav-link cta">{{ nav.cta.label }}</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">{{ hero.eyebrow }}</div>
+  <h1 class="hero-headline">{{ hero.headline_plain }} <em>{{ hero.headline_em }}</em></h1>
+  <p class="hero-body">{{ hero.body | trim }}</p>
+  <div class="hero-actions">
+    <a href="{{ hero.cta_primary_href }}"   class="btn-primary">{{ hero.cta_primary_label }}</a>
+    <a href="{{ hero.cta_secondary_href }}" class="btn-secondary">{{ hero.cta_secondary_label }}</a>
+  </div>
+  <div class="hero-deco" aria-hidden="true">{{ hero.deco_number }}</div>
+</section>
+
+<div class="latest-strip">
+  <span class="latest-label">Latest Issue</span>
+  <div class="latest-divider"></div>
+  <div class="latest-title">
+    {{ latest.title }}
+    <span class="latest-meta">
+      Issue {{ latest.issue_number }}
+      &nbsp;·&nbsp; {{ latest.date }}
+      &nbsp;·&nbsp; {{ latest.lens }}
+      &nbsp;·&nbsp; System Fragility {{ latest.fragility_score }}
+    </span>
+  </div>
+  <a href="{{ latest.href }}" class="latest-read">Read Now →</a>
+</div>
+
+<section class="about-section" id="about">
+  <div class="reveal">
+    <div class="what-label">About the Publication</div>
+    <h2 class="what-heading">Built for readers who already know the basics</h2>
+    <div class="about-prose">{{ about_html }}</div>
+  </div>
+  <div class="pillars reveal" style="transition-delay:.15s">
+    {% for pillar in pillars %}
+    <div class="pillar">
+      <span class="pillar-num">{{ "%02d" | format(loop.index) }}</span>
+      <div>
+        <div class="pillar-title">{{ pillar.title }}</div>
+        <p class="pillar-body">{{ pillar.body }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="pipeline-section" id="pipeline">
+  <div class="pipeline-inner">
+    <div class="pipeline-header reveal">
+      <span class="eyebrow">How AFI Is Produced</span>
+      <h2 class="section-heading">A Ten-Agent Production Pipeline</h2>
+      <p class="section-sub">Each issue is produced by a coordinated multi-agent system. Every agent has a distinct mandate, receives upstream context, and passes structured output downstream. Nothing is published without Auditor clearance.</p>
+    </div>
+    <div class="agents-flow reveal" style="transition-delay:.1s">
+      {% for agent in agents %}
+      <div class="agent-tile">
+        <span class="agent-step">{{ agent.step }}</span>
+        <div class="agent-name">{{ agent.name }}</div>
+        <p class="agent-role">{{ agent.role }}</p>
+        <span class="agent-deco">{{ agent.deco }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="structure-section">
+  <div class="structure-header reveal">
+    <span class="eyebrow">Every Issue Contains</span>
+    <h2 class="section-heading">Nine Sections, One Argument</h2>
+  </div>
+  <div class="sections-grid">
+    {% for sec in pub_sections %}
+    <div class="section-card reveal" style="transition-delay:{{ loop.index0 * 0.05 }}s">
+      <span class="sec-num">Section {{ sec.number }}</span>
+      <div class="sec-title">{{ sec.title }}</div>
+      <p class="sec-body">{{ sec.body }}</p>
+      <span class="sec-deco">{{ sec.number }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="frameworks-section">
+  <div class="frameworks-inner">
+    <div class="pipeline-header reveal">
+      <span class="eyebrow">Intellectual DNA</span>
+      <h2 class="section-heading">Four Frameworks, Applied Relentlessly</h2>
+      <p class="section-sub">Every agent in the AFI pipeline applies these four frameworks. They are not referenced decoratively — they determine what gets written and what gets cut.</p>
+    </div>
+    <div class="frameworks-grid">
+      {% for fw in frameworks %}
+      <div class="fw-card reveal" style="transition-delay:{{ loop.index0 * 0.08 }}s">
+        <div class="fw-thinker">{{ fw.thinker }}</div>
+        <span class="fw-concept">{{ fw.concept }}</span>
+        <p class="fw-body">{{ fw.body }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="archive-section" id="archive">
+  <div class="reveal">
+    <span class="eyebrow">Issue Archive</span>
+    <h2 class="section-heading">Published Issues</h2>
+  </div>
+  <div class="issues-list reveal" style="transition-delay:.1s">
+    {% for issue in issues %}
+    <a href="{{ issue.href }}" class="issue-row{% if issue.is_latest %} is-latest{% endif %}">
+      <div class="issue-num-col">
+        Issue {{ issue.number }}
+        <span class="issue-date">{{ issue.date }}</span>
+      </div>
+      <div>
+        <div class="issue-row-title">{{ issue.title }}</div>
+        <div class="issue-row-thesis">{{ issue.thesis | trim }}</div>
+      </div>
+      <span class="issue-cta">Read →</span>
+    </a>
+    {% endfor %}
+    {% if next_issue_number %}
+    <div class="coming-soon-row">
+      <div class="issue-num-col mono" style="color:var(--muted)">Issue {{ next_issue_number }}</div>
+      <div>
+        <div class="issue-row-title">Forthcoming</div>
+        <div class="issue-row-thesis" style="color:var(--muted)">Next issue in production.</div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<footer class="reg-bar">
+  <div class="reg-badges">
+    {% for badge in reg_badges %}
+    <span class="reg-badge">{{ badge }}</span>
+    {% endfor %}
+  </div>
+  <p class="reg-disclaimer">{{ site }} does not constitute financial, legal, or regulatory advice. All analysis represents original editorial judgement.</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(
+  es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)} }),
+  {threshold:.1, rootMargin:'0px 0px -60px 0px'}
+);
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
