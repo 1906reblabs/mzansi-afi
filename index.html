@@ -8,9 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════════════════════════ */
 :root {
   --ink:         #0C0F14;
   --paper:       #F7F3EC;
@@ -22,741 +19,129 @@
   --rule-light:  rgba(255,255,255,0.07);
   --gold-glow:   rgba(184,146,42,0.1);
 }
-
-/* ═══════════════════════════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--ink);
-  color: var(--paper);
-  font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 18px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* Subtle grid overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(184,146,42,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184,146,42,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   TYPOGRAPHY UTILITIES
-═══════════════════════════════════════════════════════════ */
-.mono {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.eyebrow {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.section-heading {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 600;
-  color: var(--paper);
-  margin-bottom: 1rem;
-}
-
-.section-sub {
-  font-size: 1rem;
-  color: var(--muted);
-  max-width: 52ch;
-  margin: 0 auto;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   MASTHEAD
-═══════════════════════════════════════════════════════════ */
-.masthead {
-  position: relative;
-  z-index: 10;
-  border-bottom: 1px solid rgba(184,146,42,0.4);
-  padding: 1.8rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.pub-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.pub-desc {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 0.2rem;
-}
-
-.masthead-nav {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-
-.nav-link {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-link:hover  { color: var(--gold); }
-
-.nav-link.cta {
-  color: var(--gold);
-  border: 1px solid rgba(184,146,42,0.4);
-  padding: 0.35rem 0.9rem;
-  transition: background 0.2s;
-}
-
-.nav-link.cta:hover { background: var(--gold-glow); }
-
-/* ═══════════════════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════════════════ */
-.hero {
-  position: relative;
-  z-index: 1;
-  min-height: 88vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 6rem 3rem 5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.hero-eyebrow {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 30px;
-  height: 1px;
-  background: var(--gold);
-}
-
-.hero-headline {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  font-weight: 800;
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  color: var(--paper);
-  margin-bottom: 2.5rem;
-  max-width: 14ch;
-}
-
-.hero-headline em {
-  color: var(--gold);
-  font-style: italic;
-}
-
-.hero-body {
-  font-size: 1.15rem;
-  color: var(--muted-light);
-  max-width: 55ch;
-  margin-bottom: 3.5rem;
-  line-height: 1.75;
-}
-
-.hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: center; }
-
-.btn-primary {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: var(--gold);
-  padding: 0.9rem 2.2rem;
-  text-decoration: none;
-  display: inline-block;
-  transition: background 0.2s, transform 0.15s;
-}
-
-.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-.btn-secondary {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--paper);
-  border: 1px solid rgba(247,243,236,0.25);
-  padding: 0.9rem 2.2rem;
-  text-decoration: none;
-  display: inline-block;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
-
-.hero-deco {
-  position: absolute;
-  right: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(10rem, 18vw, 20rem);
-  font-weight: 800;
-  color: rgba(184,146,42,0.04);
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   LATEST STRIP
-═══════════════════════════════════════════════════════════ */
-.latest-strip {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid var(--rule-dark);
-  border-bottom: 1px solid var(--rule-dark);
-  background: var(--gold-glow);
-  padding: 2.5rem 3rem;
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-.latest-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  flex-shrink: 0;
-}
-
-.latest-divider {
-  width: 1px;
-  height: 40px;
-  background: rgba(184,146,42,0.3);
-  flex-shrink: 0;
-}
-
-.latest-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--paper);
-  flex: 1;
-  min-width: 200px;
-}
-
-.latest-meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  margin-top: 0.3rem;
-  display: block;
-}
-
-.latest-read {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  text-decoration: none;
-  border: 1px solid rgba(184,146,42,0.35);
-  padding: 0.5rem 1.2rem;
-  flex-shrink: 0;
-  transition: background 0.2s;
-}
-
-.latest-read:hover { background: var(--gold-glow); }
-
-/* ═══════════════════════════════════════════════════════════
-   ABOUT SECTION
-═══════════════════════════════════════════════════════════ */
-.about-section {
-  position: relative;
-  z-index: 1;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 7rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: start;
-}
-
-.what-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.what-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(184,146,42,0.25);
-}
-
-.what-heading {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--paper);
-  margin-bottom: 1.8rem;
-}
-
-/* Markdown-rendered about prose */
-.about-prose p {
-  color: var(--muted-light);
-  line-height: 1.8;
-  margin-bottom: 1.1rem;
-}
-
-.about-prose p:last-child { margin-bottom: 0; }
-
-/* Pillars list */
-.pillars { display: flex; flex-direction: column; }
-
-.pillar {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--rule-light);
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-}
-
-.pillar:first-child { padding-top: 0; }
-
-.pillar-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  color: var(--gold);
-  flex-shrink: 0;
-  padding-top: 0.2rem;
-  width: 1.5rem;
-}
-
-.pillar-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--paper);
-  margin-bottom: 0.4rem;
-}
-
-.pillar-body { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
-
-/* ═══════════════════════════════════════════════════════════
-   PIPELINE SECTION
-═══════════════════════════════════════════════════════════ */
-.pipeline-section {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid var(--rule-light);
-  background: rgba(0,0,0,0.3);
-  padding: 6rem 3rem;
-}
-
-.pipeline-inner { max-width: 1100px; margin: 0 auto; }
-
-.pipeline-header { text-align: center; margin-bottom: 4rem; }
-
-.agents-flow {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1px;
-  background: rgba(184,146,42,0.1);
-  border: 1px solid rgba(184,146,42,0.1);
-}
-
-.agent-tile {
-  background: var(--ink);
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.2s;
-}
-
-.agent-tile:hover { background: var(--gold-glow); }
-
-.agent-step {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.6;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.agent-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--paper);
-  margin-bottom: 0.4rem;
-  line-height: 1.3;
-}
-
-.agent-role { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
-
-.agent-deco {
-  position: absolute;
-  bottom: -0.5rem;
-  right: 0.8rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  font-weight: 800;
-  color: rgba(184,146,42,0.04);
-  line-height: 1;
-  pointer-events: none;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SECTIONS STRUCTURE
-═══════════════════════════════════════════════════════════ */
-.structure-section {
-  position: relative;
-  z-index: 1;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 7rem 3rem;
-}
-
-.structure-header { margin-bottom: 4rem; }
-
-.sections-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.section-card {
-  border: 1px solid var(--rule-light);
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-
-.section-card:hover { border-color: rgba(184,146,42,0.3); }
-
-.sec-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.sec-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--paper);
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-}
-
-.sec-body { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-
-.sec-deco {
-  position: absolute;
-  bottom: -1rem;
-  right: 0.5rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 4rem;
-  color: rgba(255,255,255,0.02);
-  font-weight: 400;
-  line-height: 1;
-  pointer-events: none;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   FRAMEWORKS
-═══════════════════════════════════════════════════════════ */
-.frameworks-section {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid var(--rule-light);
-  background: rgba(0,0,0,0.25);
-  padding: 6rem 3rem;
-}
-
-.frameworks-inner { max-width: 1100px; margin: 0 auto; }
-
-.frameworks-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.fw-card {
-  border-left: 2px solid var(--gold);
-  padding: 1.5rem 2rem;
-  background: rgba(184,146,42,0.03);
-}
-
-.fw-thinker {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-weight: 800;
-  font-style: italic;
-  color: var(--gold);
-  margin-bottom: 0.3rem;
-}
-
-.fw-concept {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.9rem;
-  display: block;
-}
-
-.fw-body { font-size: 0.92rem; color: var(--muted-light); line-height: 1.7; }
-
-/* ═══════════════════════════════════════════════════════════
-   ARCHIVE
-═══════════════════════════════════════════════════════════ */
-.archive-section {
-  position: relative;
-  z-index: 1;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 7rem 3rem;
-}
-
-.issues-list {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.issue-row {
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 2rem;
-  align-items: center;
-  padding: 1.8rem 0;
-  border-bottom: 1px solid var(--rule-light);
-  text-decoration: none;
-  transition: background 0.15s;
-}
-
-.issue-row:first-child { border-top: 1px solid var(--rule-light); }
-.issue-row:hover { background: var(--gold-glow); padding-left: 0.75rem; }
-
-/* "New" badge on latest issue */
-.issue-row.is-latest .issue-row-title::after {
-  content: 'New';
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.52rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: var(--gold);
-  padding: 0.15rem 0.45rem;
-  margin-left: 0.75rem;
-  vertical-align: middle;
-  position: relative;
-  top: -1px;
-}
-
-.issue-num-col {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-}
-
-.issue-date {
-  color: var(--muted);
-  font-size: 0.55rem;
-  display: block;
-  margin-top: 0.2rem;
-}
-
-.issue-row-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--paper);
-  margin-bottom: 0.3rem;
-}
-
-.issue-row-thesis {
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-style: italic;
-  line-height: 1.5;
-}
-
-.issue-cta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-
-.issue-row:hover .issue-cta { opacity: 1; }
-
-.coming-soon-row {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 2rem;
-  align-items: center;
-  padding: 1.8rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  opacity: 0.3;
-}
-
-.coming-soon-row .issue-row-title {
-  color: var(--muted);
-  font-style: italic;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════════ */
-.reg-bar {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid var(--rule-dark);
-  padding: 1.5rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  background: rgba(0,0,0,0.4);
-}
-
-.reg-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-
-.reg-badge {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.25);
-}
-
-.reg-disclaimer {
-  font-size: 0.78rem;
-  color: var(--muted);
-  max-width: 500px;
-  text-align: right;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SCROLL REVEAL
-═══════════════════════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.visible { opacity: 1; transform: none; }
-
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════════════════ */
-@media (max-width: 900px) {
-  .sections-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 750px) {
-  .about-section  { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
-  .hero           { padding: 4rem 2rem 3rem; }
-  .masthead       { padding: 1.5rem 2rem; }
-  .latest-strip   { padding: 2rem; gap: 1.5rem; }
-  .hero-deco      { display: none; }
-  .sections-grid  { grid-template-columns: 1fr; }
-  .frameworks-grid{ grid-template-columns: 1fr; }
-  .structure-section,
-  .archive-section { padding: 4rem 2rem; }
-  .pipeline-section,
-  .frameworks-section { padding: 4rem 2rem; }
-  .reg-bar        { padding: 1.5rem 2rem; }
-  .reg-disclaimer { text-align: left; }
-  .issue-row      { grid-template-columns: 60px 1fr; gap: 1rem; }
-  .issue-cta      { display: none; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:'Crimson Pro',Georgia,serif;font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(184,146,42,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(184,146,42,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.mono{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
+.section-heading{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;color:var(--paper);margin-bottom:1rem}
+.section-sub{font-size:1rem;color:var(--muted);max-width:52ch;margin:0 auto}
+/* masthead */
+.masthead{position:relative;z-index:10;border-bottom:1px solid rgba(184,146,42,0.4);padding:1.8rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.pub-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.pub-desc{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.masthead-nav{display:flex;gap:2rem;align-items:center}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-link:hover{color:var(--gold)}
+.nav-link.cta{color:var(--gold);border:1px solid rgba(184,146,42,0.4);padding:.35rem .9rem;transition:background .2s}
+.nav-link.cta:hover{background:var(--gold-glow)}
+/* hero */
+.hero{position:relative;z-index:1;min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 3rem 5rem;max-width:1100px;margin:0 auto}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.hero-eyebrow::before{content:'';display:inline-block;width:30px;height:1px;background:var(--gold)}
+.hero-headline{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:800;line-height:1.0;letter-spacing:-.02em;color:var(--paper);margin-bottom:2.5rem;max-width:14ch}
+.hero-headline em{color:var(--gold);font-style:italic}
+.hero-body{font-size:1.15rem;color:var(--muted-light);max-width:55ch;margin-bottom:3.5rem;line-height:1.75}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
+.btn-primary{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:.9rem 2.2rem;text-decoration:none;display:inline-block;transition:background .2s,transform .15s}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-secondary{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--paper);border:1px solid rgba(247,243,236,.25);padding:.9rem 2.2rem;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.hero-deco{position:absolute;right:3rem;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:clamp(10rem,18vw,20rem);font-weight:800;color:rgba(184,146,42,0.04);line-height:1;user-select:none;pointer-events:none}
+/* latest strip */
+.latest-strip{position:relative;z-index:1;border-top:1px solid var(--rule-dark);border-bottom:1px solid var(--rule-dark);background:var(--gold-glow);padding:2.5rem 3rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap}
+.latest-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);flex-shrink:0}
+.latest-divider{width:1px;height:40px;background:rgba(184,146,42,.3);flex-shrink:0}
+.latest-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:var(--paper);flex:1;min-width:200px}
+.latest-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--muted);margin-top:.3rem;display:block}
+.latest-read{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(184,146,42,.35);padding:.5rem 1.2rem;flex-shrink:0;transition:background .2s}
+.latest-read:hover{background:var(--gold-glow)}
+/* about */
+.about-section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:7rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.what-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+.what-label::after{content:'';flex:1;height:1px;background:rgba(184,146,42,.25)}
+.what-heading{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;line-height:1.2;color:var(--paper);margin-bottom:1.8rem}
+.about-prose p{color:var(--muted-light);line-height:1.8;margin-bottom:1.1rem}
+.about-prose p:last-child{margin-bottom:0}
+.pillars{display:flex;flex-direction:column}
+.pillar{padding:1.5rem 0;border-bottom:1px solid var(--rule-light);display:flex;gap:1.5rem;align-items:flex-start}
+.pillar:first-child{padding-top:0}
+.pillar-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--gold);flex-shrink:0;padding-top:.2rem;width:1.5rem}
+.pillar-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--paper);margin-bottom:.4rem}
+.pillar-body{font-size:.9rem;color:var(--muted);line-height:1.65}
+/* pipeline */
+.pipeline-section{position:relative;z-index:1;border-top:1px solid var(--rule-light);background:rgba(0,0,0,.3);padding:6rem 3rem}
+.pipeline-inner{max-width:1100px;margin:0 auto}
+.pipeline-header{text-align:center;margin-bottom:4rem}
+.agents-flow{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:rgba(184,146,42,.1);border:1px solid rgba(184,146,42,.1)}
+.agent-tile{background:var(--ink);padding:1.5rem;position:relative;overflow:hidden;transition:background .2s}
+.agent-tile:hover{background:var(--gold-glow)}
+.agent-step{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);opacity:.6;margin-bottom:.5rem;display:block}
+.agent-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--paper);margin-bottom:.4rem;line-height:1.3}
+.agent-role{font-size:.8rem;color:var(--muted);line-height:1.55}
+.agent-deco{position:absolute;bottom:-.5rem;right:.8rem;font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:rgba(184,146,42,.04);line-height:1;pointer-events:none}
+/* sections grid */
+.structure-section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:7rem 3rem}
+.structure-header{margin-bottom:4rem}
+.sections-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.section-card{border:1px solid var(--rule-light);padding:1.5rem;position:relative;overflow:hidden;transition:border-color .2s}
+.section-card:hover{border-color:rgba(184,146,42,.3)}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;color:var(--gold);display:block;margin-bottom:.5rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--paper);margin-bottom:.5rem;line-height:1.3}
+.sec-body{font-size:.85rem;color:var(--muted);line-height:1.6}
+.sec-deco{position:absolute;bottom:-1rem;right:.5rem;font-family:'JetBrains Mono',monospace;font-size:4rem;color:rgba(255,255,255,.02);font-weight:400;line-height:1;pointer-events:none}
+/* frameworks */
+.frameworks-section{position:relative;z-index:1;border-top:1px solid var(--rule-light);background:rgba(0,0,0,.25);padding:6rem 3rem}
+.frameworks-inner{max-width:1100px;margin:0 auto}
+.frameworks-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.fw-card{border-left:2px solid var(--gold);padding:1.5rem 2rem;background:rgba(184,146,42,.03)}
+.fw-thinker{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;font-style:italic;color:var(--gold);margin-bottom:.3rem}
+.fw-concept{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;display:block}
+.fw-body{font-size:.92rem;color:var(--muted-light);line-height:1.7}
+/* archive */
+.archive-section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:7rem 3rem}
+.issues-list{margin-top:3rem;display:flex;flex-direction:column}
+.issue-row{display:grid;grid-template-columns:80px 1fr auto;gap:2rem;align-items:center;padding:1.8rem 0;border-bottom:1px solid var(--rule-light);text-decoration:none;transition:background .15s}
+.issue-row:first-child{border-top:1px solid var(--rule-light)}
+.issue-row:hover{background:var(--gold-glow);padding-left:.75rem}
+.issue-row.is-latest .issue-row-title::after{content:'New';font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:.15rem .45rem;margin-left:.75rem;vertical-align:middle;position:relative;top:-1px}
+.issue-num-col{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--gold)}
+.issue-date{color:var(--muted);font-size:.55rem;display:block;margin-top:.2rem}
+.issue-row-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--paper);margin-bottom:.3rem}
+.issue-row-thesis{font-size:.85rem;color:var(--muted);font-style:italic;line-height:1.5}
+.issue-cta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);opacity:0;transition:opacity .2s;white-space:nowrap}
+.issue-row:hover .issue-cta{opacity:1}
+.coming-soon-row{display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:center;padding:1.8rem 0;border-bottom:1px solid rgba(255,255,255,.04);opacity:.3}
+.coming-soon-row .issue-row-title{color:var(--muted);font-style:italic;font-family:'Playfair Display',serif;font-size:1.1rem}
+/* footer */
+.reg-bar{position:relative;z-index:1;border-top:1px solid var(--rule-dark);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:rgba(0,0,0,.4)}
+.reg-badges{display:flex;gap:.5rem;flex-wrap:wrap}
+.reg-badge{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.25)}
+.reg-disclaimer{font-size:.78rem;color:var(--muted);max-width:500px;text-align:right}
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+/* responsive */
+@media(max-width:900px){.sections-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:750px){
+  .about-section{grid-template-columns:1fr;gap:3rem;padding:4rem 2rem}
+  .hero{padding:4rem 2rem 3rem}
+  .masthead{padding:1.5rem 2rem}
+  .latest-strip{padding:2rem;gap:1.5rem}
+  .hero-deco{display:none}
+  .sections-grid{grid-template-columns:1fr}
+  .frameworks-grid{grid-template-columns:1fr}
+  .structure-section,.archive-section{padding:4rem 2rem}
+  .pipeline-section,.frameworks-section{padding:4rem 2rem}
+  .reg-bar{padding:1.5rem 2rem}
+  .reg-disclaimer{text-align:left}
+  .issue-row{grid-template-columns:60px 1fr;gap:1rem}
+  .issue-cta{display:none}
 }
 </style>
 </head>
 <body>
-
 <header class="masthead">
   <div>
     <div class="pub-name">Antifragile Insurance</div>
@@ -766,36 +151,34 @@ body::before {
     <a href="#about" class="nav-link">About</a>
     <a href="#pipeline" class="nav-link">The System</a>
     <a href="#archive" class="nav-link">Issues</a>
-    <a href="issue-003.html" class="nav-link cta">Read Issue 003 →</a>
+    <a href="issue-004.html" class="nav-link cta">Read Issue 004 →</a>
   </nav>
 </header>
 
 <section class="hero">
-  <div class="hero-eyebrow">Issue 003 — 19 May 2026</div>
-  <h1 class="hero-headline">
-    Risk Intelligence <em>Without the Comfort</em>
-  </h1>
+  <div class="hero-eyebrow">Issue 004 — 26 May 2026</div>
+  <h1 class="hero-headline">Risk Intelligence <em>Without the Comfort</em></h1>
   <p class="hero-body">A weekly strategic publication for the South African insurance industry. We identify what is fragile before it breaks, where money is actually made before competitors notice, and what the industry believes that is not yet true.</p>
   <div class="hero-actions">
-    <a href="issue-003.html"   class="btn-primary">Read the Latest Issue</a>
+    <a href="issue-004.html"   class="btn-primary">Read the Latest Issue</a>
     <a href="#archive" class="btn-secondary">Browse Archive</a>
   </div>
-  <div class="hero-deco" aria-hidden="true">003</div>
+  <div class="hero-deco" aria-hidden="true">004</div>
 </section>
 
 <div class="latest-strip">
   <span class="latest-label">Latest Issue</span>
   <div class="latest-divider"></div>
   <div class="latest-title">
-    When the Constitutional Scaffolding Shakes
+    The Performance Test
     <span class="latest-meta">
-      Issue 003
-      &nbsp;·&nbsp; 19 May 2026
-      &nbsp;·&nbsp; Political / Regulatory Lens
-      &nbsp;·&nbsp; System Fragility 6.9/10
+      Issue 004
+      &nbsp;·&nbsp; 26 May 2026
+      &nbsp;·&nbsp; Regulatory Lens
+      &nbsp;·&nbsp; System Fragility 6.8/10
     </span>
   </div>
-  <a href="issue-003.html" class="latest-read">Read Now →</a>
+  <a href="issue-004.html" class="latest-read">Read Now →</a>
 </div>
 
 <section class="about-section" id="about">
@@ -814,8 +197,7 @@ source: non-obvious insight with the intellectual courage to say it directly.&lt
 Nassim Taleb, Peter Thiel, and systems thinking. Every claim is audited before&lt;br /&gt;
 publication. Nothing is published without Auditor clearance.&lt;/p&gt;</div>
   </div>
-
-  <div class="pillars reveal" style="transition-delay: 0.15s;">
+  <div class="pillars reveal" style="transition-delay:.15s">
     <div class="pillar">
       <span class="pillar-num">01</span>
       <div>
@@ -859,12 +241,9 @@ publication. Nothing is published without Auditor clearance.&lt;/p&gt;</div>
     <div class="pipeline-header reveal">
       <span class="eyebrow">How AFI Is Produced</span>
       <h2 class="section-heading">A Ten-Agent Production Pipeline</h2>
-      <p class="section-sub">Each issue is produced by a coordinated multi-agent system.
-        Every agent has a distinct mandate, receives upstream context, and passes
-        structured output downstream. Nothing is published without Auditor clearance.</p>
+      <p class="section-sub">Each issue is produced by a coordinated multi-agent system. Every agent has a distinct mandate, receives upstream context, and passes structured output downstream. Nothing is published without Auditor clearance.</p>
     </div>
-
-    <div class="agents-flow reveal" style="transition-delay: 0.1s;">
+    <div class="agents-flow reveal" style="transition-delay:.1s">
       <div class="agent-tile">
         <span class="agent-step">Step 01</span>
         <div class="agent-name">Memory Agent</div>
@@ -892,7 +271,7 @@ publication. Nothing is published without Auditor clearance.&lt;/p&gt;</div>
       <div class="agent-tile">
         <span class="agent-step">Step 05</span>
         <div class="agent-name">Research Intelligence</div>
-        <p class="agent-role">Scans six signal domains — regulatory, macro, climate, political, market, and behavioural — to produce the Weekly Intelligence Brief.</p>
+        <p class="agent-role">Scans six signal domains - regulatory, macro, climate, political, market, and behavioural - to produce the Weekly Intelligence Brief.</p>
         <span class="agent-deco">RI</span>
       </div>
       <div class="agent-tile">
@@ -904,7 +283,7 @@ publication. Nothing is published without Auditor clearance.&lt;/p&gt;</div>
       <div class="agent-tile">
         <span class="agent-step">Step 07</span>
         <div class="agent-name">Category Analyst</div>
-        <p class="agent-role">Produces eight category intelligence sections (5A–5H) covering every major SA insurance segment. One contrarian insight, one risk, one opportunity per category.</p>
+        <p class="agent-role">Produces eight category intelligence sections (5A-5H) covering every major SA insurance segment. One contrarian insight, one risk, one opportunity per category.</p>
         <span class="agent-deco">CA</span>
       </div>
       <div class="agent-tile">
@@ -934,57 +313,56 @@ publication. Nothing is published without Auditor clearance.&lt;/p&gt;</div>
     <span class="eyebrow">Every Issue Contains</span>
     <h2 class="section-heading">Nine Sections, One Argument</h2>
   </div>
-
   <div class="sections-grid">
-    <div class="section-card reveal" style="transition-delay: 0.0s;">
+    <div class="section-card reveal" style="transition-delay:0.0s">
       <span class="sec-num">Section 01</span>
       <div class="sec-title">Executive Brief</div>
       <p class="sec-body">150–200 words. Thesis, why it matters this week, who wins and who loses. Everything a reader needs if they read nothing else.</p>
       <span class="sec-deco">01</span>
     </div>
-    <div class="section-card reveal" style="transition-delay: 0.05s;">
+    <div class="section-card reveal" style="transition-delay:0.05s">
       <span class="sec-num">Section 02</span>
       <div class="sec-title">Black Swan Watch</div>
       <p class="sec-body">3–5 tail risks the industry is systematically underestimating. Each with an underestimation argument, a nonlinear impact scenario, and an antifragility opportunity.</p>
       <span class="sec-deco">02</span>
     </div>
-    <div class="section-card reveal" style="transition-delay: 0.1s;">
+    <div class="section-card reveal" style="transition-delay:0.1s">
       <span class="sec-num">Section 03</span>
       <div class="sec-title">Fragility Index</div>
       <p class="sec-body">Eight sub-sectors scored 0–10 for fragility every issue. Time-series tracking reveals where the system is accumulating brittleness before it breaks.</p>
       <span class="sec-deco">03</span>
     </div>
-    <div class="section-card reveal" style="transition-delay: 0.15000000000000002s;">
+    <div class="section-card reveal" style="transition-delay:0.15000000000000002s">
       <span class="sec-num">Section 04</span>
       <div class="sec-title">Hidden Profit Pools</div>
       <p class="sec-body">2–3 profit pool insights that are counterintuitive or structurally obscured from standard P&amp;L analysis. The conventional view, the actual economics, why it stays hidden.</p>
       <span class="sec-deco">04</span>
     </div>
-    <div class="section-card reveal" style="transition-delay: 0.2s;">
+    <div class="section-card reveal" style="transition-delay:0.2s">
       <span class="sec-num">Section 05 A–H</span>
       <div class="sec-title">Category Intelligence</div>
       <p class="sec-body">Eight segment analyses across Life, Health, Short-Term, Commercial, Specialised, Reinsurance, Microinsurance, and Insurtech. One contrarian insight, one risk, one opportunity each.</p>
-      <span class="sec-deco">05</span>
+      <span class="sec-deco">05 A–H</span>
     </div>
-    <div class="section-card reveal" style="transition-delay: 0.25s;">
+    <div class="section-card reveal" style="transition-delay:0.25s">
       <span class="sec-num">Section 06</span>
       <div class="sec-title">Second-Order Effects</div>
       <p class="sec-body">One trend mapped through its full causal chain — from the obvious first-order effect the industry is discussing to the non-obvious third-order structural implication it is not.</p>
       <span class="sec-deco">06</span>
     </div>
-    <div class="section-card reveal" style="transition-delay: 0.30000000000000004s;">
+    <div class="section-card reveal" style="transition-delay:0.30000000000000004s">
       <span class="sec-num">Section 07</span>
       <div class="sec-title">Strategic Recommendations</div>
       <p class="sec-body">Nine moves — three for insurers, three for brokers, three for regulators. Specific, actionable, derived from this week&#39;s analysis. Each with a &#34;Why Now&#34; justification.</p>
       <span class="sec-deco">07</span>
     </div>
-    <div class="section-card reveal" style="transition-delay: 0.35000000000000003s;">
+    <div class="section-card reveal" style="transition-delay:0.35000000000000003s">
       <span class="sec-num">Section 08</span>
       <div class="sec-title">The Contrarian Take</div>
       <p class="sec-body">One committed, uncomfortable position. What important truth about SA insurance does almost no one agree with? Structured on Peter Thiel&#39;s contrarian truth framework.</p>
       <span class="sec-deco">08</span>
     </div>
-    <div class="section-card reveal" style="transition-delay: 0.4s;">
+    <div class="section-card reveal" style="transition-delay:0.4s">
       <span class="sec-num">Section 09</span>
       <div class="sec-title">Closing Line</div>
       <p class="sec-body">One sentence. Economist-style. Maximum thirty words. The week&#39;s essential insight, crystallised.</p>
@@ -998,34 +376,31 @@ publication. Nothing is published without Auditor clearance.&lt;/p&gt;</div>
     <div class="pipeline-header reveal">
       <span class="eyebrow">Intellectual DNA</span>
       <h2 class="section-heading">Four Frameworks, Applied Relentlessly</h2>
-      <p class="section-sub">Every agent in the AFI pipeline applies these four frameworks.
-        They are not referenced decoratively — they determine what gets written
-        and what gets cut.</p>
+      <p class="section-sub">Every agent in the AFI pipeline applies these four frameworks. They are not referenced decoratively — they determine what gets written and what gets cut.</p>
     </div>
-
     <div class="frameworks-grid">
-      <div class="fw-card reveal" style="transition-delay: 0.0s;">
+      <div class="fw-card reveal" style="transition-delay:0.0s">
         <div class="fw-thinker">Taleb</div>
         <span class="fw-concept">Antifragility &amp; Tail Risk</span>
         <p class="fw-body">Classify systems as fragile, robust, or antifragile. Prioritise the shape of distributions
 over their means. Identify who has skin in the game and who is transferring fragility to
 others. The Fragility Index and Black Swan Watch exist because of this framework.</p>
       </div>
-      <div class="fw-card reveal" style="transition-delay: 0.08s;">
+      <div class="fw-card reveal" style="transition-delay:0.08s">
         <div class="fw-thinker">Thiel</div>
         <span class="fw-concept">Monopoly, Secrets &amp; Zero-to-One</span>
         <p class="fw-body">Identify structural advantages that compound. Find the &#34;secret&#34; — the thing that is true
 but that most of the industry has not accepted. Distinguish genuine innovation from
 competitive iteration. The Contrarian Take is a Thiel question answered weekly.</p>
       </div>
-      <div class="fw-card reveal" style="transition-delay: 0.16s;">
+      <div class="fw-card reveal" style="transition-delay:0.16s">
         <div class="fw-thinker">Systems</div>
         <span class="fw-concept">Feedback Loops &amp; Nonlinearity</span>
         <p class="fw-body">Map reinforcing and balancing loops. Identify leverage points. Expect nonlinear outcomes
 from linear-seeming inputs. Second-order effects are not optional analysis — they are the
 core of AFI&#39;s predictive value.</p>
       </div>
-      <div class="fw-card reveal" style="transition-delay: 0.24s;">
+      <div class="fw-card reveal" style="transition-delay:0.24s">
         <div class="fw-thinker">Kahneman</div>
         <span class="fw-concept">Behavioral Economics</span>
         <p class="fw-body">Policyholders, brokers, and underwriters do not behave as rational agents. Identify the
@@ -1041,10 +416,19 @@ producing the mispricings, fragilities, and hidden profit pools that AFI exists 
     <span class="eyebrow">Issue Archive</span>
     <h2 class="section-heading">Published Issues</h2>
   </div>
-
-  <div class="issues-list reveal" style="transition-delay: 0.1s;">
-
-    <a href="issue-003.html" class="issue-row is-latest">
+  <div class="issues-list reveal" style="transition-delay:.1s">
+    <a href="issue-004.html" class="issue-row is-latest">
+      <div class="issue-num-col">
+        Issue 004
+        <span class="issue-date">26 May 2026</span>
+      </div>
+      <div>
+        <div class="issue-row-title">The Performance Test</div>
+        <div class="issue-row-thesis">The COFI Bill is not arriving as a compliance challenge — it is arriving as a performance audit. Commissioner Kamlana&#39;s second five-year mandate begins next week with one unfinished piece of business, and 51 enforcement actions totalling R120 million is the marking guide.</div>
+      </div>
+      <span class="issue-cta">Read →</span>
+    </a>
+    <a href="issue-003.html" class="issue-row">
       <div class="issue-num-col">
         Issue 003
         <span class="issue-date">19 May 2026</span>
@@ -1077,17 +461,13 @@ producing the mispricings, fragilities, and hidden profit pools that AFI exists 
       </div>
       <span class="issue-cta">Read →</span>
     </a>
-
     <div class="coming-soon-row">
-      <div class="issue-num-col mono" style="color: var(--muted);">
-        Issue 004
-      </div>
+      <div class="issue-num-col mono" style="color:var(--muted)">Issue 005</div>
       <div>
         <div class="issue-row-title">Forthcoming</div>
-        <div class="issue-row-thesis" style="color: var(--muted);">Next issue in production.</div>
+        <div class="issue-row-thesis" style="color:var(--muted)">Next issue in production.</div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1100,25 +480,15 @@ producing the mispricings, fragilities, and hidden profit pools that AFI exists 
     <span class="reg-badge">Twin Peaks</span>
     <span class="reg-badge">COFI Bill</span>
   </div>
-  <p class="reg-disclaimer">
-    Antifragile Insurance does not constitute financial, legal, or regulatory advice.
-    All analysis represents original editorial judgement.
-  </p>
+  <p class="reg-disclaimer">Antifragile Insurance does not constitute financial, legal, or regulatory advice. All analysis represents original editorial judgement.</p>
 </footer>
 
 <script>
-// Scroll reveal — identical behaviour, no framework needed
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const obs = new IntersectionObserver(
+  es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)} }),
+  {threshold:.1, rootMargin:'0px 0px -60px 0px'}
+);
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-
 </body>
 </html>
