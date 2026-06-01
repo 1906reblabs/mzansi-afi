@@ -31,10 +31,6 @@ issues:
     href: "issue-005.html"
     is_latest: true
 
-  - number: "004"           # ← change is_latest to false
-    ...
-    is_latest: false
-
 # ── NAVIGATION ────────────────────────────────────────────────────────────────
 nav:
   links:
