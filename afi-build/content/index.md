@@ -46,7 +46,8 @@ nav:
 
 # ── ISSUE ARCHIVE ─────────────────────────────────────────────────────────────
 # Add new entries at the TOP (descending order). Mark latest with is_latest: true.
-issues:  - number: "005"
+issues:  
+  - number: "005"
     date: "02 June 2026"
     title: "South Africa's Insurers Are Losing the Right Policyholders First"
     thesis: "SA's insurance market is experiencing an adverse selection event disguised as a lapse problem — as financially stable consumers exit the risk pool under premium rate pressure, the surviving book's composition worsens structurally, making today's combined ratio remedies the direct cause of tomorrow's combined ratio crisis."
