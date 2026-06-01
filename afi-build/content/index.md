@@ -9,7 +9,7 @@ site_description: >
 
 # ── HERO ──────────────────────────────────────────────────────────────────────
 hero:
-  eyebrow: "Issue 004 — 26 May 2026"
+  eyebrow: "Issue 005 — 02 June 2026"
   headline_plain: "Risk Intelligence"
   headline_em: "Without the Comfort"
   body: >
@@ -17,19 +17,23 @@ hero:
     We identify what is fragile before it breaks, where money is actually made
     before competitors notice, and what the industry believes that is not yet true.
   cta_primary_label: "Read the Latest Issue"
-  cta_primary_href: "issue-004.html"
+  cta_primary_href: "issue-005.html"
   cta_secondary_label: "Browse Archive"
   cta_secondary_href: "#archive"
-  deco_number: "004"
+  deco_number: "005"
 
 # ── LATEST ISSUE STRIP ────────────────────────────────────────────────────────
-latest:
-  issue_number: "004"
-  date: "26 May 2026"
-  lens: "Regulatory Lens"
-  fragility_score: "6.8/10"
-  title: "The Performance Test"
-  href: "issue-004.html"
+issues:
+  - number: "005"
+    date: "02 June 2026"
+    title: "South Africa's Insurers Are Losing the Right Policyholders First"
+    thesis: "SA's insurance market is experiencing an adverse selection event disguised as a lapse problem — as financially stable consumers exit the risk pool under premium rate pressure, the surviving book's composition worsens structurally, making today's combined ratio remedies the direct cause of tomorrow's combined ratio crisis."
+    href: "issue-005.html"
+    is_latest: true
+
+  - number: "004"           # ← change is_latest to false
+    ...
+    is_latest: false
 
 # ── NAVIGATION ────────────────────────────────────────────────────────────────
 nav:
@@ -47,6 +51,13 @@ nav:
 # ── ISSUE ARCHIVE ─────────────────────────────────────────────────────────────
 # Add new entries at the TOP (descending order). Mark latest with is_latest: true.
 issues:
+    - number: "005"
+    date: "02 June 2026"
+    title: "South Africa's Insurers Are Losing the Right Policyholders First"
+    thesis: "SA's insurance market is experiencing an adverse selection event disguised as a lapse problem — as financially stable consumers exit the risk pool under premium rate pressure, the surviving book's composition worsens structurally, making today's combined ratio remedies the direct cause of tomorrow's combined ratio crisis."
+    href: "issue-005.html"
+    is_latest: true
+  
   - number: "004"
     date: "26 May 2026"
     title: "The Performance Test"
@@ -56,7 +67,7 @@ issues:
       begins next week with one unfinished piece of business, and 51 enforcement
       actions totalling R120 million is the marking guide.
     href: "issue-004.html"
-    is_latest: true
+    is_latest: false
 
   - number: "003"
     date: "19 May 2026"
