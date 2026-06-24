@@ -3,33 +3,38 @@
 site_name: "Antifragile Insurance"
 site_tagline: "Strategic Intelligence · South African Insurance Industry"
 site_description: >
-  Weekly strategic intelligence for the South African insurance industry.
+  Monthly strategic intelligence for the South African insurance industry.
   Built on a ten-agent AI pipeline. One thesis per issue.
   Nine sections. Nothing published without Auditor clearance.
 
 # ── HERO ──────────────────────────────────────────────────────────────────────
 hero:
-  eyebrow: "Issue 005 — 02 June 2026"
+  eyebrow: "Issue 006 — 25 June 2026"
   headline_plain: "Risk Intelligence"
   headline_em: "Without the Comfort"
   body: >
-    A weekly strategic publication for the South African insurance industry.
+    A monthly strategic publication for the South African insurance industry.
     We identify what is fragile before it breaks, where money is actually made
     before competitors notice, and what the industry believes that is not yet true.
   cta_primary_label: "Read the Latest Issue"
-  cta_primary_href: "issue-005.html"
+  cta_primary_href: "issue-006.html"
   cta_secondary_label: "Browse Archive"
   cta_secondary_href: "#archive"
-  deco_number: "005"
+  deco_number: "006"
 
 # ── LATEST ISSUE STRIP ────────────────────────────────────────────────────────
-issues:
-  - number: "005"
-    date: "02 June 2026"
-    title: "South Africa's Insurers Are Losing the Right Policyholders First"
-    thesis: "SA's insurance market is experiencing an adverse selection event disguised as a lapse problem — as financially stable consumers exit the risk pool under premium rate pressure, the surviving book's composition worsens structurally, making today's combined ratio remedies the direct cause of tomorrow's combined ratio crisis."
-    href: "issue-005.html"
-    is_latest: true
+# FIX: this block was previously keyed "issues:" again (a duplicate of the
+# Issue Archive key below), which silently overwrote itself in YAML and meant
+# `latest` was parsing as an empty dict — the Latest Issue strip on the live
+# site has been rendering blank. This must be keyed "latest:" (singular, a
+# dict, not a list) to match what afi_parser.py and index.j2 actually expect.
+latest:
+  title: "Insurers Perfected Behavioral Pricing. They Never Priced Their Own Bias."
+  issue_number: "006"
+  date: "25 June 2026"
+  lens: "Behavioral"
+  fragility_score: "7.1/10"
+  href: "issue-006.html"
 
 # ── NAVIGATION ────────────────────────────────────────────────────────────────
 nav:
@@ -41,19 +46,35 @@ nav:
     - label: "Issues"
       href: "#archive"
   cta:
-    label: "Read Issue 004 →"
-    href: "issue-004.html"
+    label: "Read Issue 006 →"
+    href: "issue-006.html"
 
 # ── ISSUE ARCHIVE ─────────────────────────────────────────────────────────────
 # Add new entries at the TOP (descending order). Mark latest with is_latest: true.
-issues:  
+issues:
+  - number: "006"
+    date: "25 June 2026"
+    title: "Insurers Perfected Behavioral Pricing. They Never Priced Their Own Bias."
+    thesis: >
+      South African insurers have spent two decades exploiting policyholder
+      behavioral bias while leaving their own institutional biases — anchoring,
+      herding, automation bias, status quo denial — completely unexamined, and
+      that unexamined bias is now the larger, less-priced systemic risk.
+    href: "issue-006.html"
+    is_latest: true
+
   - number: "005"
     date: "02 June 2026"
     title: "South Africa's Insurers Are Losing the Right Policyholders First"
-    thesis: "SA's insurance market is experiencing an adverse selection event disguised as a lapse problem — as financially stable consumers exit the risk pool under premium rate pressure, the surviving book's composition worsens structurally, making today's combined ratio remedies the direct cause of tomorrow's combined ratio crisis."
+    thesis: >
+      SA's insurance market is experiencing an adverse selection event disguised
+      as a lapse problem — as financially stable consumers exit the risk pool
+      under premium rate pressure, the surviving book's composition worsens
+      structurally, making today's combined ratio remedies the direct cause of
+      tomorrow's combined ratio crisis.
     href: "issue-005.html"
-    is_latest: true
-  
+    is_latest: false
+
   - number: "004"
     date: "26 May 2026"
     title: "The Performance Test"
@@ -93,7 +114,7 @@ issues:
     is_latest: false
 
 # Placeholder for next issue (rendered as greyed-out "forthcoming")
-next_issue_number: "005"
+next_issue_number: "007"
 
 # ── REGULATORY FOOTER BADGES ──────────────────────────────────────────────────
 reg_badges:
@@ -108,7 +129,7 @@ reg_badges:
 ## About the Publication
 
 ANTIFRAGILE INSURANCE is not a news summary, a regulatory update service, or a balanced
-view. It is a weekly argument — a specific, defensible claim about the South African
+view. It is a monthly argument — a specific, defensible claim about the South African
 insurance industry, supported by evidence and designed to be uncomfortable for at least
 one powerful constituency.
 
@@ -124,7 +145,7 @@ publication. Nothing is published without Auditor clearance.
 ## Publication Pillars
 
 - **Non-obvious or nothing** — Every insight is tested against the question: would a senior executive at a top-5 SA insurer already know this? If yes, it does not appear in print.
-- **One thesis per issue** — Nine sections, one intellectual spine. Every analysis connects to the week's central claim — or it does not run.
+- **One thesis per issue** — Nine sections, one intellectual spine. Every analysis connects to the month's central claim — or it does not run.
 - **Positions, not summaries** — AFI takes sides. The Contrarian Take answers Peter Thiel's question: what important truth does almost no one in the industry agree with you on?
 - **SA-first, always** — Global context is permitted only when it directly illuminates South African dynamics. The analytical frame is always this market, this regulation, this moment.
 - **Audited before publication** — A dedicated Auditor Agent runs seven quality passes — factual accuracy, logical consistency, regulatory precision, specificity — before every issue clears for publication.
@@ -133,15 +154,15 @@ publication. Nothing is published without Auditor clearance.
 
 | Section | Title | Description |
 |---|---|---|
-| 01 | Executive Brief | 150–200 words. Thesis, why it matters this week, who wins and who loses. Everything a reader needs if they read nothing else. |
+| 01 | Executive Brief | 180–220 words. Thesis, why it matters this month, who wins and who loses. Everything a reader needs if they read nothing else. |
 | 02 | Black Swan Watch | 3–5 tail risks the industry is systematically underestimating. Each with an underestimation argument, a nonlinear impact scenario, and an antifragility opportunity. |
 | 03 | Fragility Index | Eight sub-sectors scored 0–10 for fragility every issue. Time-series tracking reveals where the system is accumulating brittleness before it breaks. |
 | 04 | Hidden Profit Pools | 2–3 profit pool insights that are counterintuitive or structurally obscured from standard P&L analysis. The conventional view, the actual economics, why it stays hidden. |
 | 05 A–H | Category Intelligence | Eight segment analyses across Life, Health, Short-Term, Commercial, Specialised, Reinsurance, Microinsurance, and Insurtech. One contrarian insight, one risk, one opportunity each. |
 | 06 | Second-Order Effects | One trend mapped through its full causal chain — from the obvious first-order effect the industry is discussing to the non-obvious third-order structural implication it is not. |
-| 07 | Strategic Recommendations | Nine moves — three for insurers, three for brokers, three for regulators. Specific, actionable, derived from this week's analysis. Each with a "Why Now" justification. |
+| 07 | Strategic Recommendations | Nine moves — three for insurers, three for brokers, three for regulators. Specific, actionable, derived from this month's analysis. Each with a "Why Now" justification. |
 | 08 | The Contrarian Take | One committed, uncomfortable position. What important truth about SA insurance does almost no one agree with? Structured on Peter Thiel's contrarian truth framework. |
-| 09 | Closing Line | One sentence. Economist-style. Maximum thirty words. The week's essential insight, crystallised. |
+| 09 | Closing Line | One sentence. Economist-style. Maximum thirty words. The month's essential insight, crystallised. |
 
 ## Four Frameworks, Applied Relentlessly
 
@@ -153,7 +174,7 @@ others. The Fragility Index and Black Swan Watch exist because of this framework
 ### Thiel — Monopoly, Secrets & Zero-to-One
 Identify structural advantages that compound. Find the "secret" — the thing that is true
 but that most of the industry has not accepted. Distinguish genuine innovation from
-competitive iteration. The Contrarian Take is a Thiel question answered weekly.
+competitive iteration. The Contrarian Take is a Thiel question answered monthly.
 
 ### Systems — Feedback Loops & Nonlinearity
 Map reinforcing and balancing loops. Identify leverage points. Expect nonlinear outcomes
