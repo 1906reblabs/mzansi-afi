@@ -116,7 +116,7 @@ _AGENTS = [
      "role": "Maintains five persistent registers of prior issue history, claim "
              "performance, fragility score trends, and contrarian positions taken."},
     {"step": "Step 02", "name": "Planning Agent",        "deco": "P",
-     "role": "Selects the weekly thesis, designs the section emphasis map, and "
+     "role": "Selects the monthly thesis, designs the section emphasis map, and "
              "produces individual briefing packages for every downstream agent."},
     {"step": "Step 03", "name": "Orchestrator",          "deco": "O",
      "role": "Distributes the thesis, manages context passing between agents, "
@@ -126,7 +126,7 @@ _AGENTS = [
              "structured evidence queries from any agent at any pipeline stage."},
     {"step": "Step 05", "name": "Research Intelligence", "deco": "RI",
      "role": "Scans six signal domains - regulatory, macro, climate, political, "
-             "market, and behavioural - to produce the Weekly Intelligence Brief."},
+             "market, and behavioural - to produce the Monthly Intelligence Brief."},
     {"step": "Step 06", "name": "Risk Analyst",          "deco": "RA",
      "role": "Produces Section 2 (Black Swan Watch) and Section 3 (Fragility Index) "
              "using Taleb's tail-risk and antifragility frameworks."},
