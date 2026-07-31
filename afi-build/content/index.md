@@ -9,7 +9,7 @@ site_description: >
 
 # ── HERO ──────────────────────────────────────────────────────────────────────
 hero:
-  eyebrow: "Issue 006 — 25 June 2026"
+  eyebrow: "Issue 007 — 30 July 2026"
   headline_plain: "Risk Intelligence"
   headline_em: "Without the Comfort"
   body: >
@@ -17,10 +17,10 @@ hero:
     We identify what is fragile before it breaks, where money is actually made
     before competitors notice, and what the industry believes that is not yet true.
   cta_primary_label: "Read the Latest Issue"
-  cta_primary_href: "issue-006.html"
+  cta_primary_href: "issue-007.html"
   cta_secondary_label: "Browse Archive"
   cta_secondary_href: "#archive"
-  deco_number: "006"
+  deco_number: "007"
 
 # ── LATEST ISSUE STRIP ────────────────────────────────────────────────────────
 # FIX: this block was previously keyed "issues:" again (a duplicate of the
@@ -29,12 +29,12 @@ hero:
 # site has been rendering blank. This must be keyed "latest:" (singular, a
 # dict, not a list) to match what afi_parser.py and index.j2 actually expect.
 latest:
-  title: "Insurers Perfected Behavioral Pricing. They Never Priced Their Own Bias."
-  issue_number: "006"
-  date: "25 June 2026"
-  lens: "Behavioral"
-  fragility_score: "7.1/10"
-  href: "issue-006.html"
+  title: "South Africa's Insurers Renewed Their Cover at Last Year's Climate"
+  issue_number: "007"
+  date: "30 July 2026"
+  lens: "Climate"
+  fragility_score: "7.3/10"
+  href: "issue-007.html"
 
 # ── NAVIGATION ────────────────────────────────────────────────────────────────
 nav:
@@ -46,12 +46,25 @@ nav:
     - label: "Issues"
       href: "#archive"
   cta:
-    label: "Read Issue 006 →"
-    href: "issue-006.html"
+    label: "Read Issue 007 →"
+    href: "issue-007.html"
 
 # ── ISSUE ARCHIVE ─────────────────────────────────────────────────────────────
 # Add new entries at the TOP (descending order). Mark latest with is_latest: true.
 issues:
+  - number: "007"
+    date: "30 July 2026"
+    title: "South Africa's Insurers Renewed Their Cover at Last Year's Climate"
+    thesis: >
+      South African insurers have just completed July 2026 treaty renewal at
+      increases that track last underwriting year's loss experience rather than
+      the current trajectory of flood, storm, and drought risk, confirming this
+      publication's prior warning about renewal anchoring — and the market now
+      enters the 2026/27 wet season carrying materially thinner catastrophe
+      protection than its renewed treaties imply.
+    href: "issue-007.html"
+    is_latest: true
+
   - number: "006"
     date: "25 June 2026"
     title: "Insurers Perfected Behavioral Pricing. They Never Priced Their Own Bias."
@@ -61,7 +74,7 @@ issues:
       herding, automation bias, status quo denial — completely unexamined, and
       that unexamined bias is now the larger, less-priced systemic risk.
     href: "issue-006.html"
-    is_latest: true
+    is_latest: false
 
   - number: "005"
     date: "02 June 2026"
@@ -114,7 +127,7 @@ issues:
     is_latest: false
 
 # Placeholder for next issue (rendered as greyed-out "forthcoming")
-next_issue_number: "007"
+next_issue_number: "008"
 
 # ── REGULATORY FOOTER BADGES ──────────────────────────────────────────────────
 reg_badges:
