@@ -9,7 +9,7 @@ site_description: >
 
 # ── HERO ──────────────────────────────────────────────────────────────────────
 hero:
-  eyebrow: "Issue 007 — 30 July 2026"
+  eyebrow: "Issue 008 — 27 August 2026"
   headline_plain: "Risk Intelligence"
   headline_em: "Without the Comfort"
   body: >
@@ -17,24 +17,19 @@ hero:
     We identify what is fragile before it breaks, where money is actually made
     before competitors notice, and what the industry believes that is not yet true.
   cta_primary_label: "Read the Latest Issue"
-  cta_primary_href: "issue-007.html"
+  cta_primary_href: "issue-008.html"
   cta_secondary_label: "Browse Archive"
   cta_secondary_href: "#archive"
-  deco_number: "007"
+  deco_number: "008"
 
 # ── LATEST ISSUE STRIP ────────────────────────────────────────────────────────
-# FIX: this block was previously keyed "issues:" again (a duplicate of the
-# Issue Archive key below), which silently overwrote itself in YAML and meant
-# `latest` was parsing as an empty dict — the Latest Issue strip on the live
-# site has been rendering blank. This must be keyed "latest:" (singular, a
-# dict, not a list) to match what afi_parser.py and index.j2 actually expect.
 latest:
-  title: "South Africa's Insurers Renewed Their Cover at Last Year's Climate"
-  issue_number: "007"
-  date: "30 July 2026"
-  lens: "Climate"
-  fragility_score: "7.3/10"
-  href: "issue-007.html"
+  title: "South African Insurers Have the Lowest AI Adoption Rate in Finance. The Regulator Is Setting the Bar Anyway."
+  issue_number: "008"
+  date: "27 August 2026"
+  lens: "Technology"
+  fragility_score: "6.0/10"
+  href: "issue-008.html"
 
 # ── NAVIGATION ────────────────────────────────────────────────────────────────
 nav:
@@ -46,12 +41,25 @@ nav:
     - label: "Issues"
       href: "#archive"
   cta:
-    label: "Read Issue 007 →"
-    href: "issue-007.html"
+    label: "Read Issue 008 →"
+    href: "issue-008.html"
 
 # ── ISSUE ARCHIVE ─────────────────────────────────────────────────────────────
 # Add new entries at the TOP (descending order). Mark latest with is_latest: true.
 issues:
+  - number: "008"
+    date: "27 August 2026"
+    title: "South African Insurers Have the Lowest AI Adoption Rate in Finance. The Regulator Is Setting the Bar Anyway."
+    thesis: >
+      South African insurers report the lowest AI adoption rate of any financial-sector
+      segment surveyed by the FSCA and Prudential Authority — 8%, tied with lenders,
+      against 52% for banks — yet the industry's real supervisory bar is being set by the
+      FSCA's largest-ever AI-enabled fraud enforcement action, aimed at a licensed trading
+      platform rather than an insurer. Insurers waiting for AI-specific legislation before
+      building governance are misreading where the regulatory risk already lives.
+    href: "issue-008.html"
+    is_latest: true
+
   - number: "007"
     date: "30 July 2026"
     title: "South Africa's Insurers Renewed Their Cover at Last Year's Climate"
@@ -63,7 +71,7 @@ issues:
       enters the 2026/27 wet season carrying materially thinner catastrophe
       protection than its renewed treaties imply.
     href: "issue-007.html"
-    is_latest: true
+    is_latest: false
 
   - number: "006"
     date: "25 June 2026"
@@ -127,7 +135,7 @@ issues:
     is_latest: false
 
 # Placeholder for next issue (rendered as greyed-out "forthcoming")
-next_issue_number: "008"
+next_issue_number: "009"
 
 # ── REGULATORY FOOTER BADGES ──────────────────────────────────────────────────
 reg_badges:
@@ -153,7 +161,9 @@ source: non-obvious insight with the intellectual courage to say it directly.
 
 Every issue is produced by a ten-agent AI pipeline designed around the frameworks of
 Nassim Taleb, Peter Thiel, and systems thinking. Every claim is audited before
-publication. Nothing is published without Auditor clearance.
+publication. Nothing is published without Auditor clearance. From Issue 008 onward, every
+factual claim is additionally sourced to a verifiable public document, company statement,
+or reported development, reviewed at the time of writing.
 
 ## Publication Pillars
 
