@@ -9,7 +9,7 @@ site_description: >
 
 # ── HERO ──────────────────────────────────────────────────────────────────────
 hero:
-  eyebrow: "Issue 008 — 27 August 2026"
+  eyebrow: "Issue 010 — 29 October 2026"
   headline_plain: "Risk Intelligence"
   headline_em: "Without the Comfort"
   body: >
@@ -17,19 +17,19 @@ hero:
     We identify what is fragile before it breaks, where money is actually made
     before competitors notice, and what the industry believes that is not yet true.
   cta_primary_label: "Read the Latest Issue"
-  cta_primary_href: "issue-008.html"
+  cta_primary_href: "issue-010.html"
   cta_secondary_label: "Browse Archive"
   cta_secondary_href: "#archive"
-  deco_number: "008"
+  deco_number: "010"
 
 # ── LATEST ISSUE STRIP ────────────────────────────────────────────────────────
 latest:
-  title: "South African Insurers Have the Lowest AI Adoption Rate in Finance. The Regulator Is Setting the Bar Anyway."
-  issue_number: "008"
-  date: "27 August 2026"
-  lens: "Technology"
-  fragility_score: "6.0/10"
-  href: "issue-008.html"
+  title: "National Finances Have Stabilised. Insurers Are Exposed to the Tier Beneath Them."
+  issue_number: "010"
+  date: "29 October 2026"
+  lens: "Political"
+  fragility_score: "6.3/10"
+  href: "issue-010.html"
 
 # ── NAVIGATION ────────────────────────────────────────────────────────────────
 nav:
@@ -41,12 +41,37 @@ nav:
     - label: "Issues"
       href: "#archive"
   cta:
-    label: "Read Issue 008 →"
-    href: "issue-008.html"
+    label: "Read Issue 010 →"
+    href: "issue-010.html"
 
 # ── ISSUE ARCHIVE ─────────────────────────────────────────────────────────────
 # Add new entries at the TOP (descending order). Mark latest with is_latest: true.
 issues:
+  - number: "010"
+    date: "29 October 2026"
+    title: "National Finances Have Stabilised. Insurers Are Exposed to the Tier Beneath Them."
+    thesis: >
+      South Africa's fiscal position has stabilised, but the Treasury's own account of
+      local government — incomplete grant-funded projects, transfers suspended to 69
+      municipalities, a municipal finance law still at proposal stage — describes the tier
+      on which the 4 November elections, a very strong El Niño and municipal service delivery
+      converge. Insurers' unrest, weather and municipal exposures share one transmission node.
+    href: "issue-010.html"
+    is_latest: true
+
+  - number: "009"
+    date: "25 September 2026"
+    title: "The FSCA's New Risk Engine Goes Live This Month. Insurers Don't Know What It Will See."
+    thesis: >
+      South Africa's FSCA was scheduled to switch on the live version of its Integrated
+      Regulatory Solution in September, built on the OMNI-Risk Return — the first single,
+      comparable, machine-readable risk profile the regulator would hold for every insurer,
+      landing the same week the Board of Healthcare Funders publicly contested the Council
+      for Medical Schemes' 2027 contribution guidance. Correction in Issue 010: the go-live
+      date was not confirmed by any FSCA communication located.
+    href: "issue-009.html"
+    is_latest: false
+
   - number: "008"
     date: "27 August 2026"
     title: "South African Insurers Have the Lowest AI Adoption Rate in Finance. The Regulator Is Setting the Bar Anyway."
@@ -55,10 +80,9 @@ issues:
       segment surveyed by the FSCA and Prudential Authority — 8%, tied with lenders,
       against 52% for banks — yet the industry's real supervisory bar is being set by the
       FSCA's largest-ever AI-enabled fraud enforcement action, aimed at a licensed trading
-      platform rather than an insurer. Insurers waiting for AI-specific legislation before
-      building governance are misreading where the regulatory risk already lives.
+      platform rather than an insurer.
     href: "issue-008.html"
-    is_latest: true
+    is_latest: false
 
   - number: "007"
     date: "30 July 2026"
@@ -135,7 +159,7 @@ issues:
     is_latest: false
 
 # Placeholder for next issue (rendered as greyed-out "forthcoming")
-next_issue_number: "009"
+next_issue_number: "011"
 
 # ── REGULATORY FOOTER BADGES ──────────────────────────────────────────────────
 reg_badges:
